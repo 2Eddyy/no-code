@@ -1,0 +1,137 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-violet p-0">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="javascript:void(0)" routerLink="/projects">
+            <img src="../../../../../assets/images/favicon.ico" style="height: 25px;" alt="favicon">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-white fw-medium font-15" aria-current="page" routerLink="/projects">
+                        Projects
+                    </a>
+                </li> -->
+<!-- <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-white fw-medium font-15 " href="javascript:void(0)" routerLink="/builder">
+                        Builder
+                    </a>
+                </li> -->
+<!-- <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-white fw-medium font-15 " href="javascript:void(0)" routerLink="/dashboard-editor">
+                        Editor
+                    </a>
+                </li> -->
+<!-- </ul>
+            <span class="navbar-text d-flex align-items-center">
+                <button type="button" class="btn btn-outline-primary upgrade-btn p-1 px-3 text-white">Upgrade to
+                    PRO</button>
+                <div class="px-3">
+                    <label class="switch" for="checkboxTheme">
+                        <input type="checkbox" checked id="checkboxTheme" class="checkboxTheme" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+                <div ngbDropdown class="d-inline-block px-3 c-pointer border-left">
+                    <div  id="dropdownBasic3" class="font-15" ngbDropdownToggle>
+                        <img src="../../../../../assets/images/user.png" height="30" alt="user">
+                    </div>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="dropdown-menu-end">
+                        <button ngbDropdownItem (click)="logoutAll()">Logout</button>
+
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-light p-0 border-bottom">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand text-white" href="javascript:void(0)" routerLink="/projects">
+            <img src="../../../../../assets/images/boodskap-logo-black.png" style="height: 50px;" alt="favicon">
+        </a> -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="" aria-current="page" routerLink="/projects">
+            <img
+              src="../../../../../assets/images/boodskap-logo-black.png"
+              style="height: 45px"
+              alt="favicon"
+            />
+          </a>
+        </li>
+        <!-- <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-white fw-medium font-15 " href="javascript:void(0)" routerLink="/builder">
+                        Builder
+                    </a>
+                </li> -->
+        <!-- <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-white fw-medium font-15 " href="javascript:void(0)" routerLink="/dashboard-editor">
+                        Editor
+                    </a>
+                </li> -->
+      </ul>
+      <span class="navbar-text d-flex align-items-center">
+        <button
+          type="button"
+          class="btn btn-outline-primary rounded-0 upgrade-btn p-1 px-3 text-white"
+        >
+          Upgrade to PRO
+        </button>
+        <!-- <div class="px-3">
+                    <label class="switch" for="checkboxTheme">
+                        <input type="checkbox" checked id="checkboxTheme" class="checkboxTheme" />
+                        <div class="slider round"></div>
+                    </label>
+                </div> -->
+        <div ngbDropdown class="d-inline-block px-3 c-pointer">
+          <div
+            id="dropdownBasic3"
+            class="font-15 d-flex justify-content-around"
+            ngbDropdownToggle
+          >
+            <div class="mt-2">
+              <img
+              [src]='piciD ?profileImageSrc:"../../../../../assets/images/user.png"'
+              
+                height="30"
+                alt="user"
+              />
+            </div>
+            <div class="mx-2">
+              <div class="username">
+                <span>{{ firstname }}</span>
+                <span>{{ lastname }}</span>
+              </div>
+              <div class="usermail m-0">{{ mail }}</div>
+            </div>
+          </div>
+          <div
+            ngbDropdownMenu
+            aria-labelledby="dropdownBasic3"
+            class="dropdown-menu-end"
+          >            <button routerLink="/profile" class="logout" ngbDropdownItem ><i style="color:#673ab7;" class="bi bi-person-fill me-2 mt-1"></i>Profile</button>
+          <button routerLink="/settings" class="logout" ngbDropdownItem ><i style="color:#673ab7;" class="bi bi-gear-fill me-2 mt-1"></i>Settings</button>
+
+            <button class="logout border-top" ngbDropdownItem (click)="logoutAll()"><i style="color:#673ab7;" class="fas fa-sign-out-alt me-2 mt-1"></i>Logout</button>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+</nav>

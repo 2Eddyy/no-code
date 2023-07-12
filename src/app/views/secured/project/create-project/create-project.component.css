@@ -1,0 +1,176 @@
+.com-unterline-color{
+    padding: 10px 0px;
+    position: relative;
+    display: inline-block;
+}
+.com-unterline-color::after {
+    position: absolute;
+    background: #292E33;
+    height: 3px;
+    content: '';
+    width: 35px;
+    left: 17px;
+    top: 43.5px;
+}
+.close{
+  font-size: 24px;
+  float: right;
+cursor: pointer;
+  /* pointer-events: ; */
+}
+.time{
+  font-size: 13px;
+  font-weight: 600;
+  color: grey;
+}
+.project-name{
+    
+  font-weight: 700 !important;
+  font-size: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+
+}
+::ng-deep .mat-step-text-label{
+    font-weight: 700;
+    font-size: 17px;
+}
+::ng-deep .mat-stepper-vertical-line::before{
+    border-left-style : dashed !important;
+    top: -22px;
+    bottom: -22px;
+}
+::ng-deep .mat-vertical-stepper-header .mat-step-icon{
+    margin-right: 20px !important;
+}
+::ng-deep .mat-vertical-content {
+    padding: 0 24px 24px 35px !important;
+}
+.prj-crt-label{
+    font-weight: 500;
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+.text-wrap{
+    color: #797d93;
+}
+.filesize{
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  padding: 15px;
+  background-color: black;
+  color: white;
+}
+.stepper-button{
+    box-shadow: 0 0px 0px 0 #0003, 0 0px 6px 0 #0003;
+    border: 1px solid #aaa !important;
+    background-color: #673ab7;
+    color: white;
+}
+.stepper-button:hover{
+    background-color: #673AB7;
+    color: #fff;
+}
+.mat-stepper-horizontal, .mat-stepper-vertical{
+    background-color: transparent;
+}
+
+::ng-deep .ng-placeholder{
+    font-size: 14px;
+    top:6px !important;
+}
+::ng-deep .ng-select .ng-select-container{
+    border: 1px solid #ced4da;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 1; /* Firefox */
+    font-size: 14px;
+    color: #999
+
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: red;
+  }
+
+  .search-field {
+    border-radius: 20px;
+    padding: 5px 15px;
+    border: 1px solid #8496AE;
+    height: 38px;
+  }
+  
+  
+  .search-icon {
+    position: absolute;
+    right: -1px;
+    top: -1.5px;
+    border: 1px solid #8496AE;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 11px;
+    font-size: 13px;
+    background-color: #fff;
+  }
+
+  ::ng-deep .is-invalid .ng-select-container{
+    border-color: #dc3545;
+    padding-right: 25px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  }
+
+  ::ng-deep .mat-step-header:hover:not([aria-disabled]) {
+    background-color: transparent !important;
+  }
+
+  .upload-img-style{
+    display: block;
+    padding: 16px;
+    border: 1px dashed #ced4da;
+    background: white;
+    height: 52px;
+    width: calc(100% - 70px);
+
+  }
+  ul li{
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+  .carddetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0px;
+  }
+  
+  .icon-preview img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .cardimage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+.icon-preview-style{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: #dddddd4f;
+}

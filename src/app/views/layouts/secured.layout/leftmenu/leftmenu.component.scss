@@ -1,0 +1,83 @@
+.sidebar .nav li a:hover{
+    text-decoration: underline;
+}
+.sidebar .nav>li.active>a, .sidebar .nav>li.active>a:focus, .sidebar .nav>li.active>a:hover {
+    background: transparent;
+}
+li.nav-header  {
+    color: #2d2f79 !important;
+}
+.sidebar .nav>li.nav-header {
+    font-size: 12px;
+}
+.sidebar b{
+    color: grey;
+}
+li{
+    width: 250px;
+    margin-bottom: 7px;
+}
+#mySidenav img{
+    height: 18px;
+    width: 18px;
+    margin-right: 6px;
+}
+a{
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-module{
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 20px;
+}
+.nav-header {
+    // margin: 0;
+    padding: 15px 20px 3px;
+    line-height: 20px;
+    color: #889097;
+    font-weight: 600;
+    color: rgb(247, 152, 2);
+    font-size: 12px;
+    margin-right: 90%;
+}
+.sidebar{
+    width: 250px;
+}
+.nav{
+    margin-bottom: 50px;
+    padding-left: 20px;
+}
+.nav-devModule{
+    margin: 0;
+    padding: 15px 20px 3px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #2d2f79;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.fa-key{
+    color: #2d2f79;
+    font-size: 16px;
+}
+.token{
+    margin-left: 10px;
+}
+.side-sub-nav{
+    font-size: 14px;
+    color: #363636;
+}
+.user-module{
+    color: #666;
+    margin-left: 20%;
+}
+.device-module{
+    color: #666;
+    margin-left: 17%;
+}
+.firm-module{
+    color: #666;
+    margin-left: 11%;
+}

@@ -1,0 +1,49 @@
+@import "../../../../editor-theme.scss";
+:host{
+  #highlight_box {
+    pointer-events: none;
+    position: absolute;
+    border: 1px solid $uni-accent-color;
+
+    display: none;
+  }
+  #highlight_name {
+    background: $uni-accent-color;
+    font-size: 15px;
+    color: #fff;
+    position: relative;
+    top: -27px;
+    left: -1px;
+    width: auto;
+    padding: 2px 5px;
+    display: inline-block;
+    border-radius: 3px 3px 0 0;
+  }
+  #section_actions {
+    position: absolute;
+    bottom: -25px;
+    left: calc(50% - 12px);
+
+    button {
+
+    }
+
+    ::ng-deep .mat-icon {
+      height: 20px !important;
+      width: 20px !important;
+    }
+    #add_section_btn {
+      position: relative;
+      bottom: -8px;
+      background: $uni-accent-color;
+      color: #fff;
+      height: 25px !important;
+      width: 25px !important;
+      span {
+        font-size: x-large;
+        position: relative;
+        top: -7px;
+      }
+    }
+  }
+}

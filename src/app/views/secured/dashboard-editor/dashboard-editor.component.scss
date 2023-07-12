@@ -1,0 +1,196 @@
+.layout-section {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.left-section,
+.property-section {
+  width: 327px;
+  border: 1px solid #B9C4D1;
+  position: relative;
+  margin: 10px;
+  height: calc(100vh - 110px);
+  background: #ffffff;
+}
+
+.overflow-style {
+  height: calc(100vh - 175px);
+  overflow: auto;
+}
+
+.editor-section {
+  padding: 8px;
+  background-image: url(../../../../assets/images/grid.png);
+  background-size: contain;
+  width: 100%;
+}
+
+.search-field {
+  border-radius: 20px;
+  padding: 5px 15px;
+  border: 1px solid #8496AE;
+  height: 32px;
+}
+
+input::placeholder {
+  font-size: 14px;
+}
+
+.search-icon {
+  position: absolute;
+  right: -9px;
+  top: -1.5px;
+  border: 1px solid #8496AE;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+  background-color: #fff;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cccbcc;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #cccbcc;
+}
+
+.left-arrow-collapse {
+  position: absolute;
+  width: 100px;
+  height: 78px;
+  font-size: 20px;
+  top: 0;
+  right: -63px;
+  border-radius: 44px;
+  text-align: center;
+  z-index: -1;
+}
+
+.basice-icon {
+  font-size: 22px;
+}
+
+.editor-container {
+  border: 1px solid #bcc6d3;
+  height: calc(100vh - 185px);
+  background-color: #ffffff;
+  overflow: auto;
+}
+
+::ng-deep .accordion-header {
+  margin-bottom: 5px;
+}
+
+::ng-deep .accordion-header button,
+::ng-deep .accordion-button:not(.collapsed) {
+  padding: 5px 13px 5px 35px;
+  background-color: #f3f3f3;
+  color: #212529;
+  font-weight: 600;
+  font-size: 15px;
+
+}
+
+::ng-deep .accordion-header button:focus {
+  box-shadow: none;
+}
+
+::ng-deep .accordion-item {
+  border: 0;
+}
+
+::ng-deep .accordion-item:first-of-type .accordion-button {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0
+}
+
+::ng-deep .accordion-body {
+  padding: 10px;
+}
+
+::ng-deep .accordion-button::after {
+  position: absolute;
+  left: 13px;
+  width: 12px;
+  top: 9px;
+  background-size: auto;
+}
+
+::ng-deep .accordion-button:not(.collapsed)::after {
+  top: 2px;
+}
+
+::ng-deep .nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  background: #f5f2ff;
+  color: #673ab7;
+  border: none;
+  padding: 4px 10px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+::ng-deep .nav-tabs .nav-link {
+  padding: 3px 10px;
+  color: #212529;
+  font-size: 15px;
+}
+
+.col-style:first-child,
+.col-style:nth-child(2) {
+  border: 0;
+}
+
+.screen-section {
+  border: 1px solid #bcc6d3;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+ul li {
+  padding-left: 10px;
+}
+
+::ng-deep .h-200 {
+  height: 200px;
+}
+
+.tab-style {
+  width: 100px;
+  text-align: center;
+  padding: 2px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.ui-btn{
+  border-top-left-radius: 5px;
+}
+.int-btn{
+  border-top-right-radius: 5px;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: #fff;
+}
+
+.bg-theme{
+  background: #ffffff;
+  border: 1px solid #dddddd;
+}

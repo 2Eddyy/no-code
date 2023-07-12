@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="confirm_1" width="36" height="36" viewBox="0 0 36 36">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#b9bcc1}
+        </style>
+    </defs>
+    <path id="Rectangle_1024" d="M0 0h36v36H0z" class="cls-1" data-name="Rectangle 1024"/>
+    <path id="Rectangle_1025" d="M0 0h6v1H0z" data-name="Rectangle 1025" transform="translate(22 13)"/>
+    <path id="Rectangle_1026" d="M0 0h5v1H0z" data-name="Rectangle 1026" transform="translate(8 10)"/>
+    <path id="Rectangle_1027" d="M0 0h13v1H0z" data-name="Rectangle 1027" transform="translate(15 10)"/>
+    <path id="Rectangle_1028" d="M0 0h12v1H0z" data-name="Rectangle 1028" transform="translate(8 13)"/>
+    <path id="Rectangle_1029" d="M0 0h9v1H0z" data-name="Rectangle 1029" transform="translate(8 16)"/>
+    <path id="Rectangle_1030" d="M0 0h9v1H0z" data-name="Rectangle 1030" transform="translate(19 16)"/>
+    <path id="Path_852" d="M29.5 29H15V19h17v7.5a2.5 2.5 0 0 1-2.5 2.5zM16 28h13.5a1.5 1.5 0 0 0 1.5-1.5V20H16z" class="cls-2" data-name="Path 852"/>
+    <path id="Path_853" d="M16 29H6.5A2.5 2.5 0 0 1 4 26.5V19h12zM5 20v6.5A1.5 1.5 0 0 0 6.5 28H15v-8z" class="cls-2" data-name="Path 853"/>
+    <path id="Path_854" d="M32 20H4V9.5A2.5 2.5 0 0 1 6.5 7h23A2.5 2.5 0 0 1 32 9.5zM5 19h26V9.5A1.5 1.5 0 0 0 29.5 8h-23A1.5 1.5 0 0 0 5 9.5z" class="cls-2" data-name="Path 854"/>
+    <path id="Path_855" d="M7.52 27a.47.47 0 0 1-.35-.15.49.49 0 0 1 0-.7l5-5a.5.5 0 0 1 .72.7l-5 5a.51.51 0 0 1-.37.15z" data-name="Path 855"/>
+    <path id="Path_856" d="M12.5 27a.47.47 0 0 1-.35-.15l-5-5a.495.495 0 1 1 .7-.7l5 5a.48.48 0 0 1 0 .7.47.47 0 0 1-.35.15z" data-name="Path 856"/>
+    <path id="Path_857" d="M23 27a.48.48 0 0 1-.26-.07.5.5 0 0 1-.17-.69l3-4.93a.5.5 0 0 1 .86.52l-3 4.93A.5.5 0 0 1 23 27z" data-name="Path 857"/>
+    <path id="Path_858" d="M23 27a.48.48 0 0 1-.38-.18l-2.5-3a.5.5 0 0 1 .76-.64l2.5 3A.5.5 0 0 1 23 27z" data-name="Path 858"/>
+</svg>

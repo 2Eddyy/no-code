@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#b9bcc1}
+        </style>
+    </defs>
+    <g id="Group_711" data-name="Group 711" transform="translate(-135)">
+        <path id="Rectangle_979" d="M0 0h36v36H0z" class="cls-1" data-name="Rectangle 979" transform="translate(135)"/>
+        <path id="Path_810" d="M158.722 30.02a.5.5 0 0 1-.357-.851l4.963-5.036a.5.5 0 0 1 .713.7l-4.963 5.036a.5.5 0 0 1-.356.151z" data-name="Path 810"/>
+        <path id="Path_811" d="M163.7 30a.5.5 0 0 1-.353-.147l-5-5a.5.5 0 0 1 .707-.707l5 5a.5.5 0 0 1-.354.854z" data-name="Path 811"/>
+        <path id="Path_812" d="M161.2 13a.493.493 0 0 1-.26-.073.5.5 0 0 1-.167-.687l3-4.928a.5.5 0 1 1 .854.519l-3 4.929a.5.5 0 0 1-.427.24z" data-name="Path 812"/>
+        <path id="Path_813" d="M161.2 13a.5.5 0 0 1-.384-.18l-2.5-3a.5.5 0 1 1 .768-.64l2.5 3a.5.5 0 0 1-.384.82z" data-name="Path 813"/>
+        <path id="Path_814" d="M143.5 22a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-6a2.5 2.5 0 1 0 2.5 2.5 2.5 2.5 0 0 0-2.5-2.5z" data-name="Path 814"/>
+        <path id="Path_815" d="M153 18.5V11h3.5v-1H152v8h-3.5v1h3.5v8h4.5v-1H153v-7.5z" class="cls-2" data-name="Path 815"/>
+    </g>
+</svg>

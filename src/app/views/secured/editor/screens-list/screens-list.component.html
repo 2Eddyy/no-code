@@ -1,0 +1,168 @@
+<ng-container>
+    <div  class="modal-header">
+       
+        <h4 class="modal-title"  style="font-weight: 600;"> <span class="pinky">Screens</span></h4>
+    
+    <button type="button" class="close btn-close" (click)="activeModal.dismiss();">
+
+        </button>
+    </div>
+    <div class="modal-body" style="background-color: hsl(220deg 10.34% 94.31%);padding: 10px;max-height:520px;overflow-y: auto;overflow-x: hidden;">
+        <div class="d-flex justify-content-between" >
+<div>
+    <span style="font-size: 12px;cursor: pointer;" (click)="openModal(activeModal)">ADD NEW SCREEN <i
+        class="fas fa-plus-circle ms-1 mb-1"></i></span>
+        <span class="ms-2"> Screen Count : {{screenCount?screenCount:0}}</span>
+</div>
+         
+            <div style="cursor: pointer;" class="expand-icons">
+                <i style="position: relative;left:22px;top:1px;font-size: 12px;" class="bi bi-search "></i><input [(ngModel)]="searchInput" placeholder="screen Name" class="me-4 screenSearch  ps-4" type="text">
+                <i style="color: #d9dadb" (click)="changeCardScreen()" [ngClass]="{'theme-color':cardScreen==true}" class="fas fa-list fa-md me-2"></i>
+                <i style="color: #d9dadb" (click)="changeListScreen()" [ngClass]="{'theme-color':listScreen==true}" class="fas fa-th-large fa-md "></i>
+
+                <!-- <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 13 13" width="17" height="17"> <g class="cls-1"> <path d="M6.92,1.08v5h5v-5Zm4,4h-3v-3h3Z"></path> <path d="M.92,6.08h5v-5h-5Zm1-4h3v3h-3Z"></path> <path d="M.92,12.08h5v-5h-5Zm1-4h3v3h-3Z"></path> <path d="M6.92,12.08h5v-5h-5Zm1-4h3v3h-3Z"></path> </g> </svg> -->
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div *ngIf="cardScreen">
+                <div class="text-center" *ngIf="selectScreen.length==0 && (selectScreen | searchPipe:searchInput).length==0">
+                    <p>No data Found !</p>  
+                            </div>
+                <div class="row ">
+                    <div   class="col-xl-4" *ngFor="let screen of selectScreen | searchPipe:searchInput">
+                        <div   style="border-radius:0px;width: 360px;height: 300px; cursor: pointer;overflow:hidden;" class="card text-start text-dark bg-white  mb-3">
+                            <div style="font-size: 12px;" class="card-header d-flex justify-content-between bg-white fw-bold">
+                                {{screen.screenname}}
+                                <i (click)="deleteScreen(screen.screenname,screen.screenid)" style="color: #673ab7;font-size: 14px;cursor: pointer;" class="bi bi-trash mt-1 "></i>
+                            </div>
+                            <div>
+                            </div>
+                            <div  id="myDiv" (click)="openScreenView(screen,activeModal)" *ngIf="screen.code=='' || null" class="card-body ">
+                                <p class="card-text text-center">
+                                    Screen is empty
+                                </p>
+                            </div>
+                            <div  (click)="openScreenView(screen,activeModal)"  *ngIf="screen.code !='' || null" [innerHTML]="screen.code | parsePipe  | safe: 'html' "  class=" zoom-out">
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+        </div>
+                <div  *ngIf="listScreen">
+                    <table style="background-color: white;border-radius: 5px;border:1px solid rgb(210 210 210);border-radius:8px;" class="table screenCards">
+                        <thead>
+                          <tr>
+                            <th scope="col">Screen Name</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Screen</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <div class="text-center" *ngIf="(selectScreen | searchPipe:searchInput).length==0">
+                                
+                                    <p style="position: relative;left:150px;" class="text-end">No data Found !</p>
+            
+                                
+                                        </div>
+                            
+                          <tr *ngFor="let screen of selectScreen | searchPipe:searchInput">
+
+                            
+                            <td>{{screen.screenname}}</td>
+                            <td> 
+                                <span style="font-size: 12px;"><i style="color: #673ab7;font-size: 12px;" class="bi bi-pencil-square me-1"></i>{{screen.updatedtime | date : "MMMM d, y h:mm a"}}</span><br>
+                                <span style="font-size: 12px;"><i  style="color: #673ab7;font-size: 13px;" class="bi bi-file-earmark-check me-1" ></i> {{screen.createdtime | date : "MMMM d, y h:mm a"}} </span>
+                            </td>
+                            <td> 
+<div   style="border-radius:0px; cursor: pointer;width:360px;height: 230px; overflow:hidden;" class="card me-5 text-dark bg-white mb-3">
+                                <div>
+                                </div>
+                                <div (click)="openScreenView(screen,activeModal)" *ngIf="screen.code=='' || null" class="card-body">
+                                    <p class="card-text text-center">
+                                        Screen is empty
+                                    </p>
+                                </div>
+                                <div  (click)="openScreenView(screen,activeModal)"  *ngIf="screen.code !='' || null" [innerHTML]="screen.code | parsePipe  | safe: 'html' "  class="zoom-out">
+                                           <p class="card-text text-center">
+                                    </p>
+                                </div> 
+                            </div>
+                                </td>
+                            <td><i (click)="deleteScreen(screen.screenname,screen.screenid)" style="color: #673ab7;font-size: 14px;cursor: pointer;" class="bi bi-trash mt-1 "></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            
+            <!-- <div *ngIf="screenList.length == 0">
+                <div style="height: 100px;" class="text-center">No Data Found</div>
+            </div> -->
+            </div>
+         <!-- <div class="">
+            <div class="d-flex justify-content-between">
+                <span style="font-size: 12px;cursor: pointer;">ADD NEW PAGES <i
+                        class="fas fa-plus-circle ms-1 mb-1"></i></span>
+
+                <div style="cursor: pointer;" class="expand-icons">
+                    <i class="fas fa-bars me-2"></i>
+                    <i class="fas fa-th-large "></i>
+                    <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 13 13" width="17" height="17"> <g class="cls-1"> <path d="M6.92,1.08v5h5v-5Zm4,4h-3v-3h3Z"></path> <path d="M.92,6.08h5v-5h-5Zm1-4h3v3h-3Z"></path> <path d="M.92,12.08h5v-5h-5Zm1-4h3v3h-3Z"></path> <path d="M6.92,12.08h5v-5h-5Zm1-4h3v3h-3Z"></path> </g> </svg>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="">
+                    <div class="card me-4 text-dark bg-white mb-3"
+                        style="max-width: 12rem;height:350px;border-radius:0px !important;">
+                        <div style="font-size: 12px;"
+                            class="card-header d-flex justify-content-between bg-white fw-bold">Dashboard
+
+                            <i class="fas fa-exclamation mt-1  "></i>
+
+
+                        </div>
+
+                        <div class="card-body">
+                            <p class="card-text ">Some quick example text.</p>
+                        </div>
+                    </div>
+                    <div class="card me-4 text-dark bg-white mb-3"
+                        style="max-width: 12rem;height:350px;border-radius:0px !important;">
+                        <div style="font-size: 12px;"
+                            class="card-header d-flex justify-content-between bg-white fw-bold">Dashboard
+
+                            <i class="fas fa-exclamation mt-1  "></i>
+
+
+                        </div>
+
+                        <div class="card-body">
+                            <p class="card-text ">Some quick example text.</p>
+                        </div>
+                    </div>
+                    <div class="card me-4 text-dark bg-white mb-3"
+                        style="max-width: 12rem;height:350px;border-radius:0px !important;">
+                        <div style="font-size: 12px;"
+                            class="card-header d-flex justify-content-between bg-white fw-bold">Dashboard
+
+                            <i class="fas fa-exclamation mt-1  "></i>
+
+
+                        </div>
+
+                        <div class="card-body">
+                            <p class="card-text ">Some quick example text.</p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>  -->
+    </div>
+</ng-container>

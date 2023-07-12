@@ -1,0 +1,781 @@
+<div style="overflow-x: hidden; background-color: #f8f9fb">
+  <div class="container-fluid p-0" [ngClass]="{ bg: visible }">
+    <div class="row g-0">
+      <!-- <div class="col-2">
+            <div class="bg-theme" style="height: calc(100vh - 47px);"></div>
+        </div> -->
+      <div class="col-12" style="height: calc(100vh - 60px)">
+        <div class="project-list p-4">
+          <!-- <div class="d-flex flex-wrap mt-3">
+                    <div class="p-3">
+                        <div class="card project-card">
+                            <div class="card-body  text-center" (click)="togglecard()">
+                                Create a project
+                                <div class="rounded-2 mx-auto mt-3 border plus-style">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3" *ngFor="let project of projectList">
+                        <div class="card created-project">
+                            <div class="card-body text-center">
+                                <div class=" mx-auto mt-3 ">
+                                    <div *ngIf="project.project_icon">
+                                        <img src="https://v5dev.boodskap.io/api/files/download//{{api_token}}/{{project.project_icon}}" alt="project" height="50">
+                                    </div>
+                                    <div *ngIf="!project.project_icon">
+                                        <img src="../../../../assets/images/iot.png" alt="project" height="50">
+                                    </div>
+                                    <h6 class="mt-3 fw-semibold">{{project['project_name']}}</h6>
+                                    <p>{{project['app_id']}}</p>
+                                    <div class="action-section">
+                                        <button type="button"  ngbTooltip="Clone" (click)="Clone(project)" class="btn btn-action">
+                                            <i class="fa fa-clone" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" ngbTooltip="View" class="btn btn-action">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" ngbTooltip="Builder" class="btn btn-action" routerLink="/builder/{{project.app_id}}">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button"  ngbTooltip="Delete"  class="btn btn-action" (click)="deleteProject(project)">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+          <div class="container options">
+            <button
+              class="btn btn-light projects-btn active"
+              [ngClass]="{ active: current === 'published' }"
+              (click)="currentTab('published')"
+            >
+              <i class="fas fa-globe p-1"></i>Published
+            </button>
+            <button
+              class="btn btn-light projects-btn"
+              [ngClass]="{ active: current === 'drafted' }"
+              (click)="currentTab('drafted')"
+            >
+              <i class="fas fa-inbox p-1"></i>Drafted
+            </button>
+            <button
+              [ngClass]="{ active: current === 'archived' }"
+              (click)="currentTab('archived')"
+              class="btn btn-light projects-btn"
+            >
+              <i class="fas fa-cubes p-1"></i>
+              Archived
+            </button>
+            <hr class="m-0" />
+            <div class="creating-project mt-4 d-flex justify-content-between">
+              <!-- <button (click)="togglecard()" class="btn btn-primary create">
+                Create New
+              </button> -->
+              <h4 *ngIf="current == 'published'" style="color: #666666">
+                Published Apps<span *ngIf="statuscheck == true"
+                  >({{ totalsize }})</span
+                >
+              </h4>
+              <h4 *ngIf="current == 'drafted'" style="color: #666666">
+                Drafted Apps<span *ngIf="statuscheck == true"
+                  >(0)</span
+                >
+              </h4>
+              <h4 *ngIf="current == 'archived'" style="color: #666666">
+                Archived Apps<span *ngIf="statuscheck == true"
+                  >({{ totalsize }})</span
+                >
+              </h4>
+              <div>
+                <input
+                  class="project-search mx-4"
+                  [(ngModel)]="searchProject"
+                  (input)="transform()"
+                  name="searchProject"
+                  placeholder="Search here"
+                  type="search"
+                />
+                <button
+                  *ngIf="list == true"
+                  class="btn btn-primary"
+                  (click)="togglecard()"
+                  style="font-size: 14px"
+                >
+                  Create a Project
+                </button>
+                <button class="border-0 bg-transparent">
+                  <i
+                    class="fas fa-th-large fa-lg mx-3"
+                    style="color: #d9dadb"
+                    [ngClass]="{ active: list == false }"
+                    (click)="list = false"
+                    ngbTooltip="Grid View"
+                    placement="bottom"
+                    [autoClose]="true"
+                  ></i>
+                </button>
+                <button class="border-0 bg-transparent">
+                  <i
+                    class="fas fa-list fa-lg"
+                    style="color: #d9dadb"
+                    ngbTooltip="Table View"
+                    placement="bottom"
+                    [autoClose]="true"
+                    [ngClass]="{ active: list == true }"
+                    (click)="listview()"
+                  ></i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="container mt-3 p-0 mx-0"
+              *ngIf="list == false && current == 'published'"
+            >
+              <div class="process" *ngIf="statuscheck == false">Loading...</div>
+              <div class="row g-3">
+                <!-- here -->
+
+                <!-- <span >{{ size }}</span> -->
+
+                <!-- <div class="col-md-12" *ngIf="size < end">
+                  {{ size }}/{{ end }}
+                  <p *ngIf="size < end">{{ size }}</p> out of
+                  {{ size }} entries
+                  <div class="p-0">NO DATA FOUND</div>
+                </div> -->
+
+                <!-- here -->
+                <div
+                  class="col-md-12"
+                  *ngIf="projectList.length == 0 && statuscheck == true"
+                >
+                  <div class="p-0">
+                    <div class="card project-fullcard">
+                      <div
+                        class="card-body text-center h2"
+                        (click)="togglecard()"
+                      >
+                        <div class="fullplus-style mx-auto mt-5 h4">
+                          <i
+                            class="fa fa-plus create mt-2"
+                            aria-hidden="true"
+                          ></i>
+                        </div>
+                        Start Creating
+                        <div class="h6 mt-3">
+                          Start your new project by clicking here...
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3" *ngIf="pageno == 1 && size != 0">
+                  <div class="p-0">
+                    <div class="card project-card">
+                      <div class="card-body text-center" (click)="togglecard()">
+                        <div class="plus-style mx-auto m-5">
+                          <i
+                            class="fa fa-plus create mt-2"
+                            aria-hidden="true"
+                          ></i>
+                        </div>
+                        Create a project
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-sm-3 col-md-3"
+                  *ngFor="
+                    let project of projectList.slice(start, end)
+                      | projectsearcher : searchProject
+                  "
+                >
+                  <div class="p-0 projects">
+                    <div class="card project-card border-0">
+                      <div class="card-body p-0">
+                        <div class="p-3" (click)="navigateWithParams(project)">
+                          <div>
+                            <div *ngIf="project.project_icon">
+                              <img
+                                src="https://v5dev.boodskap.io/api/files/download//{{
+                                  api_token
+                                }}/{{ project.project_icon }}"
+                                alt="project"
+                                style="
+                                  border-radius: 50%;
+                                  width: 30px;
+                                  height: 30px;
+                                "
+                              />
+                            </div>
+                            <div *ngIf="!project.project_icon">
+                              <img
+                                src="../../../../assets/images/globe.png"
+                                alt="project"
+                                style="
+                                  border-radius: 50%;
+                                  width: 30px;
+                                  height: 30px;
+                                "
+                              />
+                            </div>
+                            <h6
+                              class="my-1 project-name"
+                              title="{{ project.project_name }}"
+                            >
+                              {{ project["project_name"] }}
+                            </h6>
+                            <p
+                              class="m-0 time app-name"
+                              title="{{ project.app_id }}"
+                            >
+                              {{ project["app_id"] }}
+                            </p>
+                            <p class="m-0 time">
+                              {{
+                                project["updated_ts"]
+                                  | date : "MMMM d, y h:mm:ss a"
+                              }}
+                            </p>
+                            <span class="badge rounded-pill bg-violet"
+                              >Public</span
+                            >
+                          </div>
+
+                          <!-- <p class="m-0">{{ project["app_id"] }}</p> -->
+                        </div>
+                      </div>
+                      <div class="action-section">
+                        <!-- <button
+                          type="button"
+                          ngbTooltip="Clone"
+                          placement="bottom"
+                          [autoClose]="true"
+                          (click)="Clone(project)"
+                          class="btn btn-action"
+                        >
+                          <i class="fa fa-clone" aria-hidden="true"></i>
+                        </button>
+                 
+                        <button
+                          type="button"
+                          ngbTooltip="Builder"
+                          placement="bottom"
+                          [autoClose]="true"
+                          class="btn btn-action"
+                          routerLink="/builder/{{ project.app_id }}"
+                        >
+                          <i class="fa fa-edit" aria-hidden="true"></i>
+                        </button> -->
+                        <!-- <button
+                          type="button"
+                          ngbTooltip="Delete"
+                          placement="bottom"
+                          [autoClose]="true"
+                          class="btn btn-action"
+                          (click)="deleteProject(project)"
+                        >
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button> -->
+                        <div
+                          class="d-flex flex-grow-1 mx-2 justify-content-start align-items-center"
+                        >
+                          <!-- <a href="#">
+                            <i
+                              class="fas fa-globe p-0"
+                              style="color: #e4e4e4"
+                            ></i>
+                          </a>
+                          <a href="#">
+                            <i
+                              class="fab fa-google-play p-0"
+                              style="color: #e4e4e4"
+                            ></i>
+                          </a>
+                          <a href="#">
+                            <i
+                              class="fab fa-apple p-0"
+                              style="color: #e4e4e4"
+                            ></i>
+                          </a> -->
+                        </div>
+                        <div
+                          class="d-flex flex-grow-1 mx-2 justify-content-end align-items-center"
+                        >
+                          <button
+                            type="button"
+                            ngbTooltip="Preview"
+                            placement="bottom"
+                            [autoClose]="true"
+                            class="btn"
+                          >
+                            <i
+                              class="fa fa-eye"
+                              style="color: #686868"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
+                          <div ngbDropdown class="d-inline-block more">
+                            <button
+                              type="button"
+                              ngbTooltip="Actions"
+                              placement="bottom"
+                              [autoClose]="true"
+                              class="border-0 p-2"
+                              id="dropdownBasic1"
+                              ngbDropdownToggle
+                            >
+                              <i
+                                class="fas fa-ellipsis-h btn-action"
+                                style="color: #686868; font-size: 24px"
+                              ></i>
+                            </button>
+                            <div
+                              ngbDropdownMenu
+                              aria-labelledby="dropdownBasic1"
+                            >
+                              <button ngbDropdownItem (click)="Clone(project)">
+                                Clone
+                              </button>
+                              <div class="dropdown-divider"></div>
+                              <button
+                                ngbDropdownItem
+                                (click)="navigateWithParams(project)"
+                              >
+                                Edit
+                              </button>
+                              <div class="dropdown-divider"></div>
+                              <button
+                                ngbDropdownItem
+                                (click)="deleteProject(project)"
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-3" *ngIf="statuscheck == true">
+                <ul>
+                  <li
+                    [ngClass]="{ 'btn-disabled': end == 10 }"
+                    class="previous"
+                    (click)="previous(start, end)"
+                  >
+                    <i class="fas fa-chevron-left"></i>
+                  </li>
+                  <li class="currentpage mx-2 user-select-none">
+                    <span>{{ pageno }}</span>
+                  </li>
+                  <li
+                    class="next"
+                    [ngClass]="{ 'btn-disabled': end >= size }"
+                    (click)="next(start, end)"
+                  >
+                    <i class="fas fa-chevron-right"></i>
+                  </li>
+                  <li>
+                    Showing <span *ngIf="size >= end">{{ end }}</span>
+                    <span *ngIf="size < end">{{ size }}</span> out of
+                    {{ size }} entries
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- //Archived -->
+            <div
+              class="container mt-3 p-0 mx-0"
+              *ngIf="list == false && current == 'archived'"
+            >
+              <div class="process" *ngIf="statuscheck == false">
+                <i class="fas fa-spinner fa-spin"> </i> Processing
+              </div>
+              <div class="row g-3">
+                <div
+                  class="col-sm-3 col-md-3"
+                  *ngFor="
+                    let project of projectList.slice(start, end)
+                      | projectsearcher : searchProject
+                  "
+                >
+                  <div class="p-0 projects">
+                    <div class="card project-card border-0">
+                      <div class="card-body p-0">
+                        <div class="p-3" (click)="navigateWithParams(project)">
+                          <div>
+                            <div *ngIf="project.project_icon">
+                              <img
+                                src="https://v5dev.boodskap.io/api/files/download//{{
+                                  api_token
+                                }}/{{ project.project_icon }}"
+                                alt="project"
+                                style="
+                                  border-radius: 50%;
+                                  width: 30px;
+                                  height: 30px;
+                                "
+                              />
+                            </div>
+                            <div *ngIf="!project.project_icon">
+                              <img
+                                src="../../../../assets/images/globe.png"
+                                alt="project"
+                                style="
+                                  border-radius: 50%;
+                                  width: 30px;
+                                  height: 30px;
+                                "
+                              />
+                            </div>
+                            <h6
+                              class="my-1 project-name"
+                              title="{{ project.project_name }}"
+                            >
+                              {{ project["project_name"] }}
+                            </h6>
+                            <p
+                              class="m-0 time app-name"
+                              title="{{ project.app_id }}"
+                            >
+                              {{ project["app_id"] }}
+                            </p>
+                            <p class="m-0 time">
+                              {{
+                                project["updated_ts"]
+                                  | date : "MMMM d, y h:mm:ss a"
+                              }}
+                            </p>
+                            <span class="badge rounded-pill bg-violet"
+                              >Public</span
+                            >
+                          </div>
+
+                          <!-- <p class="m-0">{{ project["app_id"] }}</p> -->
+                        </div>
+                      </div>
+                      <div class="action-section">
+                        <!-- <button
+                          type="button"
+                          ngbTooltip="Clone"
+                          placement="bottom"
+                          [autoClose]="true"
+                          (click)="Clone(project)"
+                          class="btn btn-action"
+                        >
+                          <i class="fa fa-clone" aria-hidden="true"></i>
+                        </button>
+                 
+                        <button
+                          type="button"
+                          ngbTooltip="Builder"
+                          placement="bottom"
+                          [autoClose]="true"
+                          class="btn btn-action"
+                          routerLink="/builder/{{ project.app_id }}"
+                        >
+                          <i class="fa fa-edit" aria-hidden="true"></i>
+                        </button> -->
+                        <!-- <button
+                          type="button"
+                          ngbTooltip="Delete"
+                          placement="bottom"
+                          [autoClose]="true"
+                          class="btn btn-action"
+                          (click)="deleteProject(project)"
+                        >
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button> -->
+                        <div
+                          class="d-flex flex-grow-1 mx-2 justify-content-start align-items-center"
+                        >
+                          <!-- <a href="#">
+                            <i
+                              class="fas fa-globe p-0"
+                              style="color: #e4e4e4"
+                            ></i>
+                          </a>
+                          <a href="#">
+                            <i
+                              class="fab fa-google-play p-0"
+                              style="color: #e4e4e4"
+                            ></i>
+                          </a>
+                          <a href="#">
+                            <i
+                              class="fab fa-apple p-0"
+                              style="color: #e4e4e4"
+                            ></i>
+                          </a> -->
+                        </div>
+                        <div
+                          class="d-flex flex-grow-1 mx-2 justify-content-end align-items-center"
+                        >
+                          <button
+                            type="button"
+                            ngbTooltip="Preview"
+                            placement="bottom"
+                            [autoClose]="true"
+                            class="btn"
+                          >
+                            <i
+                              class="fa fa-eye"
+                              style="color: #686868"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
+                          <div ngbDropdown class="d-inline-block more">
+                            <button
+                              type="button"
+                              class="border-0 p-2"
+                              id="dropdownBasic1"
+                              ngbDropdownToggle
+                            >
+                              <i
+                                class="fas fa-ellipsis-h btn-action"
+                                style="color: #686868; font-size: 24px"
+                              ></i>
+                            </button>
+                            <div
+                              ngbDropdownMenu
+                              aria-labelledby="dropdownBasic1"
+                            >
+                              <button ngbDropdownItem (click)="Clone(project)">
+                                Clone
+                              </button>
+                              <div class="dropdown-divider"></div>
+                              <button
+                                ngbDropdownItem
+                                (click)="navigateWithParams(project)"
+                              >
+                                Edit
+                              </button>
+                              <!-- <div class="dropdown-divider"></div> -->
+                              <!-- <button
+                                ngbDropdownItem
+                                (click)="deleteProject(project)"
+                              >
+                                Delete
+                              </button> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-3" *ngIf="statuscheck == true">
+                <ul>
+                  <li
+                    [ngClass]="{ 'btn-disabled': end == 10 }"
+                    class="previous"
+                    (click)="previous(start, end)"
+                  >
+                    <i class="fas fa-chevron-left"></i>
+                  </li>
+                  <li class="currentpage mx-2 user-select-none">
+                    <span>{{ pageno }}</span>
+                  </li>
+                  <li
+                    class="next"
+                    [ngClass]="{ 'btn-disabled': end >= size }"
+                    (click)="next(start, end)"
+                  >
+                    <i class="fas fa-chevron-right"></i>
+                  </li>
+                  <li>
+                    Showing <span *ngIf="size >= end">{{ end }}</span>
+                    <span *ngIf="size < end">{{ size }}</span> out of
+                    {{ size }} entries
+                  </li>
+                  <!-- <div class="col-sm-12 text-center error" *ngIf="size == 0">
+                    <p><i class="fas fa-search" style="font-size: 40px"></i></p>
+                    <h4>No archived projects found!!</h4>
+                  </div> -->
+                </ul>
+              </div>
+            </div>
+            <!-- //Archived -->
+            <div
+              class="container mt-3 gx-0"
+              style="
+                background-color: white;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+              "
+              *ngIf="list == true"
+            >
+              <div class="process" *ngIf="statuscheck == false">Loading...</div>
+
+              <table class="sortable" style="width: 100%; font-size: 14px">
+                <tr>
+                  <th class="mx-2" (click)="sortname(start, end)">
+                    Name
+
+                    <i class="fas fa-sort-down" *ngIf="sorting == false"></i>
+                    <i class="fas fa-sort-up" *ngIf="sorting == true"></i>
+                  </th>
+
+                  <th>App Id</th>
+                  <th>Privacy</th>
+                  <th (click)="sorttime(start, end)">
+                    Date Modified
+                    <i
+                      class="fas fa-sort-down"
+                      *ngIf="sortingtime == false"
+                    ></i>
+                    <i class="fas fa-sort-up" *ngIf="sortingtime == true"></i>
+                  </th>
+
+                  <th></th>
+                </tr>
+
+                <tr
+                  *ngFor="
+                    let project of projectList.slice(start, end)
+                      | projectsearcher : searchProject;
+                    let i = index
+                  "
+                >
+                  <td>
+                    <span
+                      *ngIf="project.project_icon"
+                      title="{{ project.project_name }}"
+                      class="project-name"
+                    >
+                      <img
+                        src="https://v5dev.boodskap.io/api/files/download//{{
+                          api_token
+                        }}/{{ project.project_icon }}"
+                        alt="project"
+                        style="border-radius: 50%; width: 30px; height: 30px"
+                      />
+                      {{ project["project_name"] }}
+                    </span>
+                    <span
+                      *ngIf="!project.project_icon"
+                      title="{{ project.project_name }}"
+                      class="project-namelist"
+                    >
+                      <img
+                        src="../../../../assets/images/globe.png"
+                        alt="project"
+                        style="border-radius: 50%; width: 30px; height: 30px"
+                      />
+                      {{ project["project_name"] }}
+                    </span>
+                  </td>
+                  <td>
+                    <span title="{{ project.app_id }}" class="app-namelist">{{
+                      project["app_id"]
+                    }}</span>
+                  </td>
+                  <td>
+                    <span class="badge rounded-pill bg-violet">Public</span>
+                  </td>
+                  <td>
+                    {{ project["updated_ts"] | date : "MMMM d, y h:mm:ss a" }}
+                  </td>
+                  <td class="px-1">
+                    <button
+                      type="button"
+                      ngbTooltip="Preview"
+                      placement="bottom"
+                      [autoClose]="true"
+                      class="btn"
+                    >
+                      <i
+                        class="fa fa-eye"
+                        style="color: #686868"
+                        aria-hidden="true"
+                      ></i>
+                    </button>
+                  </td>
+                  <td class="px-2">
+                    <div ngbDropdown class="d-inline-block more">
+                      <button
+                        type="button"
+                        class="border-0 p-2"
+                        id="dropdownBasic1"
+                        ngbDropdownToggle
+                      >
+                        <i
+                          class="fas fa-ellipsis-h btn-action"
+                          style="color: #686868; font-size: 24px"
+                        ></i>
+                      </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem (click)="Clone(project)">
+                          Clone
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button
+                          ngbDropdownItem
+                          (click)="navigateWithParams(project)"
+                        >
+                          Edit
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button
+                          ngbDropdownItem
+                          (click)="deleteProject(project)"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              <div class="py-3">
+                <ul class="m-0">
+                  <li
+                    [ngClass]="{ 'btn-disabled': end == 10 }"
+                    class="previous"
+                    (click)="previous(start, end)"
+                  >
+                    <i class="fas fa-chevron-left"></i>
+                  </li>
+                  <li class="currentpage mx-2 user-select-none">
+                    <span>{{ pageno }}</span>
+                  </li>
+                  <li
+                    class="next"
+                    [ngClass]="{ 'btn-disabled': end >= size }"
+                    (click)="next(start, end)"
+                  >
+                    <i class="fas fa-chevron-right"></i>
+                  </li>
+                  <li>
+                    Showing <span *ngIf="size >= end">{{ end }}</span>
+                    <span *ngIf="size < end">{{ size }}</span> out of
+                    {{ size }} entries
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-create-project
+      [listprojects]="totalProjectList"
+      (emitevent)="changevisibility()"
+      #createcard
+      class="create-card"
+      [ngClass]="{ visible: visible }"
+    ></app-create-project>
+  </div>
+</div>

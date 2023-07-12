@@ -1,0 +1,235 @@
+.log-head{
+    color: #18184e;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.input-icon{
+    width: 18px;
+    position: absolute;
+    right: 1px;
+    top: -18px;
+}
+.form-layout{
+    position:relative;
+    box-shadow: 0px 5px 30px  #8686bd; 
+    float: right;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+
+    }
+    
+    .content-background {
+        background-image: url("/assets/images/login/Login-bg.png");
+        background-size: cover;
+        position: fixed;
+        left: 0;
+        
+        top: 0;
+        bottom: 0;
+        overflow: hidden;
+        width: 100%;
+    }
+    
+    .sub-image {
+        position: relative;
+        width: 100px;
+        left: 295px;
+        top: 100px;
+    }
+    
+    .sub-image1 {
+        position: absolute;
+        width: 100px;
+        top: 620px;
+        left: 10px;
+    }
+    
+    .sub-image2 {
+        width: 1000px;
+        position: absolute;
+    
+        top: 200px;
+        left: 460px;
+        border-radius: 10px;
+        height: fit-content;
+    }
+    
+    .box {
+        position: relative;
+        background:hsl(261.06deg 40.52% 54.51%);
+        color: #fff;
+        width: 275px;
+        top: 5px;
+        left: 39px;
+        padding: 19px;
+        border: 1px solid #c3b4e1;
+        border-radius: 14px;
+    }
+    
+    .anchor-text{
+        text-decoration: none;
+        color: #000;
+    }
+    .checkbox.checkbox-css label {
+        padding-left: 10px;
+        margin: 0;
+    }
+    .log-head{
+        color: #18184e;
+        font-weight: 800;
+        font-size: 28px;
+    }
+    .caption-text{
+        font-size: 12px;
+        line-height: 1;
+    }
+    .wrap-input{
+        width: 100%;
+        position: relative;
+        font-weight: 600;
+        margin-bottom: 37px;
+    }
+    input{
+        outline: none;
+        border: none;
+        font-weight: 600;
+    }
+    ::-webkit-input-placeholder {
+        font-weight: 500;
+     }
+     
+     :-moz-placeholder { /* Firefox 18- */
+        font-weight: 500;
+     }
+     
+     ::-moz-placeholder {  /* Firefox 19+ */
+        font-weight: 500;
+     }
+    :-ms-input-placeholder{
+        font-weight: 500;
+    }
+    .text-size{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .input-text{
+        font-size: 14px;
+        color: #555;
+        line-height: 1.6;
+        border: none ;
+        border-bottom: 2px solid rgb(195 194 194);
+        display: block;
+        width: 100%;
+        background: 0 0;
+    }
+    .loginput{
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 20px;
+        left: 0;
+        pointer-events: none;
+        
+    }
+    .icon-position{
+        color: #817777;
+        width: 18px;
+        position: absolute;
+        right: 1px;
+        top: -18px;
+    }
+    .leftside-head{
+        font-size:35 !important ;
+        font-weight: 700 !important;
+    }
+    
+    .text-color{
+        color: #673ab7;
+    }
+    
+    .hover-text{
+        color: #fff ;
+    }
+    .btn-background{
+        background-color: #673ab7;
+        border-style: none;
+    }
+    .btn-background:hover{
+        /* background-color: #7171b9; */
+        color: #fff !important;
+    }
+    .btn-background:active{
+        background-color: #673ab7;
+
+    }
+    .btn-size{
+        color: #fff;
+        border-radius: 10px;
+        padding: 6px;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+    }
+    .btn-outline{
+        border: 2px solid #2c2c78;
+        background-color: white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .btnsecondary{
+        color: #673ab7;
+        font-weight: 600 !important;
+    }
+    .btn-outline:hover{
+        background-color: #673ab7;
+    }
+    .backlogin:hover{
+   color: white;
+    }
+    .show-eye{
+        background-image: url("/assets/images/login/show.png");
+    }
+    .hide-eye{
+        background-image: url("/assets/images/login/hide.png");
+    }   
+    .form-layout a:hover{
+        color: #673ab7;
+    }
+    .header-option a:hover{
+        text-decoration: underline !important;
+        }
+        @media screen and (min-width:768px) and (max-width:1024px) {
+            .header-option span {
+                font-size: 13px;
+            }
+        
+            .loginLogo {
+                width: 100px !important;
+            }
+        }
+        @media screen and  (max-width:576px) {
+            .header-option span {
+                font-size: 12px;
+            }
+        
+            .loginLogo {
+                width: 100px !important;
+            }
+        }
+
+        @media screen and (min-width:1400px) and (max-width:1660px) {
+            .top-content {
+                font-size:12px;
+                /* margin: 0px; */
+            }
+        }
+        /* @media screen and (min-width:1440px)  {
+            .sub-image2{
+                width: 1000px;
+            position: absolute;
+            top: 200px;
+            left: 1000px;
+            }
+        } */

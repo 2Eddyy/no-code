@@ -1,0 +1,221 @@
+<div id="editor" >
+  <div *ngIf="refreshPage" class="process"><i class="fa fa-spinner fa-spin"></i> Processing...</div>
+              <div class="row g-3">
+  <div class="sub-header">
+    <div class="d-flex justify-content-between align-items-center">
+      
+      <div class="left-section">
+        
+        <ul class="p-0 m-0">
+          <li>
+            <div ngbDropdown class="d-inline-block"
+              style="padding: 3px 8px; border: 1px solid #ddd; border-radius: 3px; background: #ffffff;">
+               <div id="dropdownBasic2" (click)="openModal('screens_list')" style="font-size: 14px;"> 
+                <span>Screens<i  style="color: #673ab7;" *ngIf="modalClose" class="fas fa-caret-right ms-2"></i>
+                  <i style="color: #673ab7;" *ngIf="modalOpen" class="fas fa-caret-down ms-2 "></i></span>
+                <!-- <span>
+                  <i class="far fa-file"></i> {{ screensList.length > 0 ? (selectedScreenObj.screenname ?
+                  selectedScreenObj.screenname : selectedScreenObj.screenid) : "Pages" }}
+                  Screens<i  *ngIf="modalClose" class="fas fa-caret-right ms-2 text-info"></i>
+                  <i *ngIf="modalOpen" class="fas fa-caret-down ms-2 text-info"></i>
+                </span> -->
+
+
+                <!-- <i class="fas fa-angle-down"
+                  style="color: #898989;vertical-align: top;margin-top: 4px;float: right;"></i> -->
+              <!-- </div> -->
+                <!-- <div  class="" id="dropdownBasic1" ngbDropdownToggle>
+                  {{ screensList.length > 0 ? (selectedScreenObj.screenname ?
+                    selectedScreenObj.screenname : selectedScreenObj.screenid) : "Pages" }}
+                  </div> -->
+              <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic2"  class="custom-dropdown">
+                <ng-container *ngIf="screensList.length > 0; else createscreen">
+                  <button *ngFor="let oneScreen of screensList"  (click)="switchToScreen(oneScreen)" ngbDropdownItem>
+                    <ng-container *ngIf="oneScreen.screenname; else screenid">
+                      <i class="far fa-file"></i> {{ oneScreen.screenname }}
+                    </ng-container>
+                    <ng-template #screenid>
+                      <i class="far fa-file"></i> {{ oneScreen.screenid }}
+                    </ng-template>
+                  </button>
+                </ng-container>
+
+                <ng-template #createscreen>
+                  <button  ngbDropdownItem (click)="openModal('create')">
+                    Create New
+                  </button>
+                </ng-template>
+              </div> -->
+            </div>
+          </div>
+            
+          </li>
+          <li class="icon-style" (click)="openModal('edit')">
+            <i class="fas fa-edit me-1" style="color:#666666;" aria-hidden="true"></i>
+          </li>
+          <li class="icon-style" (click)="openModal('create')">
+            <i class="fas fa-plus me-1" style="color:#666666;" aria-hidden="true"></i> Add Screen
+          </li>
+          <li class="icon-style">
+            <i  (click)="undo()"  [ngClass]="{'undo-active':this.currentIndex == -1}" class="fas fa-undo me-1" style="color:#666666;" aria-hidden="true"></i>
+           
+          </li>
+          <li class="icon-style">
+            <i (click)="redo()" [ngClass]="{'undo-active':this.currentIndex === this.history.length - 1}"   class="fas fa-redo me-1" style="color:#666666;" aria-hidden="true"></i>
+          </li>
+        </ul>
+      </div>
+      <!-- <div class="center-section d-flex align-items-center">
+            <div class="d-flex mt-2 justify-content-center">
+              <div [ngClass]="{'btn-primary text-white' : isUIView}" class="btn-secondary bg-theme tab-style ui-btn" (click)="isUIView = true">UI</div>
+              <div [ngClass]="{'btn-primary' : !isUIView}" class="btn-secondary bg-theme tab-style int-btn" (click)="isUIView = false">Integration</div>
+          </div>
+        </div> -->
+        <div class="text-center">
+          <p style="font-size: 12px;" class="fw-bold mb-0 d-inline-block me-1"><i style="color: #673ab7;" class="fas fa-globe" aria-hidden="true"></i>
+            {{project_details?project_details:'-'}} </p>
+          <span style="font-size: 11px;">({{app_id ?app_id:"-"}})</span>
+          <p style="font-size: 11px;" class=" mb-0 me-1">
+            <i style="color: #673ab7;" class="far fa-file me-1"></i> {{getScreenName || defaultScreenName ?getScreenName || defaultScreenName :"Screen Not Found!"}} </p>
+        </div>
+      <div class="right-section d-flex align-items-center">
+        <div ngbDropdown class="d-inline-block px-3 c-pointer border-left">
+          <div ngbDropdownToggle id="dropdownBasic3" class="font-15"  style="line-height: 11px;">
+            <div style="font-size: 10px;display: inline-block;margin-top: 0px;">Web Resolutions</div>
+            <div  style="font-size: 12px;vertical-align: top;margin-top: 5px;font-weight: 600;margin-left: 16px"
+              *ngIf="selectedResolution">{{ selectedResolution }}</div>
+          </div>
+          <div  class=""  ngbDropdownMenu aria-labelledby="dropdownBasic3">
+            <div  *ngFor="let resolution of resolutions">
+              <div class="dropdown-header">{{ resolution.label }}</div>
+              <button (click)="setResponsive(item)" *ngFor="let item of resolution.items" ngbDropdownItem
+                [class.active]="selectedResolution === item.label" (click)="selectedResolution = item.label">
+                {{ item.label }}
+              </button>
+              <div class="dropdown-divider"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="icon-style d-inline-block"   title="Laptop View">
+          <i  [ngClass]="{'viewMode':laptopMode}" class="fas fa-laptop" aria-hidden="true"></i>
+        </div>
+        <div class="icon-style d-inline-block" (click)="tabletView()" title="Tablet View">
+          <i [ngClass]="{'viewMode':tabletMode}" class="fas fa-tablet" aria-hidden="true"></i>
+        </div>
+        <div class="icon-style d-inline-block" (click)="mobileView()" title="Mobile View">
+          <i [ngClass]="{'viewMode':mobileMode}" class="fas fa-mobile" aria-hidden="true"></i>
+        </div>
+        <div (click)="refresh()" class="icon-style d-inline-block" title="Refresh">
+          <i class="fas fa-sync" aria-hidden="true"></i>
+        </div>
+        <div class="icon-style d-inline-block" title="Delete" (click)="deleteScreen()">
+          <i class="far fa-trash-alt" aria-hidden="true"></i>
+        </div>
+        <div class="icon-style d-inline-block" title="Save" (click)="saveScreen()">
+          <i class="fas fa-save" aria-hidden="true"></i>
+        </div>
+        <div class="icon-style d-inline-block" title="View / Remove Borders" (click)="setBordersMode()">
+          <i class="fas fa-border-all" aria-hidden="true"></i>
+        </div>
+        <div class="icon-style d-inline-block" title="Preview" (click)="setPreviewMode()" title="Preview">
+          <i class="fas fa-eye" aria-hidden="true"></i>
+        </div>
+        <button type="button" class="btn btn-primary publish-btn border-left mx-2" title="Publish Application"
+          (click)="publishApp()" [disabled]="isPubEnable">Publish</button>
+      </div>
+      <div *ngIf="check">
+        <div id="demo">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--   <div id="controls">
+    <div id="icon_btns">
+      <div style="float: left">
+        <button mat-button matTooltip="Dashboard" id="dashboard-btn" (click)="gotoDashboard()">
+          <mat-icon fontIcon="dashboard"></mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+        </button>
+      </div>
+      <div class="float-left" role="group">
+        <button mat-button matTooltip="Toggle left column" id="toggle-left-column-btn">
+          <mat-icon>border_left</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="border_left"></mat-icon>
+        </button>
+        <button mat-button matTooltip="Toggle right column" id="toggle-right-column-btn" >
+          <mat-icon>border_right</mat-icon>
+        </button>
+        <button mat-button
+                matTooltip="Toggle borders"
+                id="toggle-borders-btn"
+                (click)="setBordersMode()" >
+          <mat-icon>border_all</mat-icon>
+        </button>
+      </div>
+
+      <div class="btn-group mr-3" role="group">
+        <button mat-button matTooltip="Undo (Ctrl/Cmd + Z)" id="undo-btn" disabled>
+          <mat-icon>undo</mat-icon>
+        </button>
+        <button mat-button matTooltip="Redo (Ctrl/Cmd + Shift + Z)" id="redo-btn" disabled>
+          <mat-icon>redo</mat-icon>
+        </button>
+      </div>
+
+      <div class="btn-group mr-3" role="group">
+        <button
+          mat-button
+          matTooltip="Preview"
+          id="preview-btn"
+          (click)="setPreviewMode()"
+          type="button">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button mat-button matTooltip="Save" id="save-btn" disabled>
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div> -->
+  <div id="editor_body"  [style.gridTemplateAreas]="isPreviewMode ? 'content' : 'lib content props'"
+    [style.gridTemplateColumns]="isPreviewMode ? '1fr' : '15vw 1fr 15vw'">
+    <div id="library" [style.display]="isPreviewMode ? 'none' : 'flex'">
+      <app-library></app-library>
+    </div>
+
+
+    <main id="content"  style=" padding: 0;width: 100%;" [style.display]="isPreviewMode ? 'none' : 'flex'"
+      (mousemove)="handleMouseMove($event)" (mouseup)="handleMouseUp($event)">
+    </main>
+    <!--  <ng-container *ngIf="!isUIView">
+      <div id="integrationContent"
+            style="height: 100%; padding: 0;"
+            [style.display]="isPreviewMode ? 'none' : 'flex'">
+      </div>
+    </ng-container> -->
+    <div id="properties" [style.display]="isPreviewMode ? 'none' : 'flex'">
+      <app-property [element]="selectedElement" (propertyUpdated)="updateSelectionBox()"></app-property>
+    </div>
+    <div id="iframe_wrapper" [style.display]="!isPreviewMode ? 'none' : 'flex'">
+      <iframe h-100 #iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        [attr.srcDoc]="srcDocContent | safe: 'html'" id="iframe">
+
+      </iframe>
+    </div>
+  </div>
+  <div *ngIf="!this.isPreviewMode">
+    <app-integration ></app-integration>
+  </div>
+
+</div>
+
+
+<app-highlight-box style="z-index: 98;" *ngIf="!isPreviewMode" #highlight [boundBox]="elementInfo"></app-highlight-box>
+<app-select-box style="z-index: 99;" #selectBox [element]="selectedElement"></app-select-box>
+
+<div #iconDrag id="iconDrag" [style.display]="isDragging ? '' : 'none'" style="z-index: 100;
+     position: absolute;">
+  <img [src]="dragIcon" alt="">
+</div>

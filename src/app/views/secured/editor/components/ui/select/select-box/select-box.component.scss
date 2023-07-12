@@ -1,0 +1,16 @@
+@import "../../../../../../../../app/views/secured/editor/editor-theme.scss";
+:host{
+  #select_box {
+    pointer-events: none;
+    position: absolute;
+    border: 1px solid $purple !important;
+    display: block;
+
+    app-select-actions {
+      position: absolute;
+      right: -1px;
+      top: -44px;
+    }
+  }
+
+}

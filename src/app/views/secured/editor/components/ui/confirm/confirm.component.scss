@@ -1,0 +1,20 @@
+@import "../../../editor-theme.scss";
+:host {
+  .header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+  ::ng-deep mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    .action-btns {
+      button {
+        color: $uni-yellow;
+      }
+      #delete_btn {
+        background-color: $dark-violet;
+      }
+    }
+  }
+}

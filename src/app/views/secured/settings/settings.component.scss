@@ -1,0 +1,59 @@
+.changePassword label{
+    font-size: 14px;
+}
+.btn-password{
+    background-color: #673ab7;
+    color: white;
+    font-size: 14px;
+}
+.btn-password:active{
+    background-color: #673ab7;
+    color: white;
+}
+.changePassword-btn{
+    margin-top: 50px;
+}
+
+.error-mgs{
+    border-color: #e13545;
+}
+
+.show-password {
+   position: relative;
+   right: 18px;
+   bottom: 30px;
+}
+.show-passwordTwo{
+    position: relative;
+    right: 18px;
+    bottom: 30px;
+}
+
+.fa-eye {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.fa-eye-slash {
+    position: absolute;
+    top: 4px;
+    right: 7px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.active-style{
+    // border: 1px solid #673ab7;
+    background-color: #673ab7;
+   border: 1px solid #673ab7;
+   color: white !important;
+   
+}
+.Tabs-default{
+    border: 1px solid #673ab7;
+    color: #673ab7;
+}
+
+

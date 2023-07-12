@@ -1,0 +1,1689 @@
+<div id="styles_console">
+  <ng-container *ngIf="selectedType == 'style'">
+    <div id="header" class="d-flex">
+      <div
+        class="properties p-2 w-50"
+        [ngClass]="{ active: prop == 'prop' }"
+        (click)="prop = 'prop'"
+      >
+        Properties
+      </div>
+      <div
+        class="properties p-2 w-50"
+        [ngClass]="{ active: prop == 'styles' }"
+        (click)="prop = 'styles'"
+      >
+        Styles Console
+      </div>
+      <hr class="m-0" />
+    </div>
+    <div class="" id="console" *ngIf="prop == 'styles'">
+      <mat-accordion displayMode="flat" [multi]="true" [hideToggle]="false">
+        <mat-expansion-panel [hideToggle]="false" *ngIf="currentEleTag === 'img'">
+          <mat-expansion-panel-header>Image</mat-expansion-panel-header>
+          <div class="section" data-section="image_header">
+            <div class="form-group row" data-key="Image">
+              <div class="input">
+                <div class="form-group col-8 d-inline-block">
+                  <input
+                    name="Image"
+                    type="text"
+                    [(ngModel)]="loadedImgName"
+                    class="form-control"
+                    disabled
+                  />
+                </div>
+                <div class="col-4 d-inline-block">
+                  <button
+                    class="form-control"
+                    (click)="removeLoadedImg()"
+                    [disabled]="loadedImgName === 'None'"
+                  >
+                    Clear
+                  </button>
+                </div>
+                <input
+                  name="file_imgUpload"
+                  type="file"
+                  (change)="imageToBase64URL($event)"
+                  class="form-control"
+                  [attr.disabled]="currentEleTag === 'img' ? null : ''"
+                />
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          [hideToggle]="false"
+          *ngIf="currentEleTag === 'video'"
+        >
+          <mat-expansion-panel-header>Video</mat-expansion-panel-header>
+          <div class="section" data-section="video_header">
+            <div class="form-group col-12 d-inline-block" data-key="video-player">
+              <label class="control-label">Src</label>
+              <div class="input">
+                <input name="src" type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="video-width">
+              <label class="control-label">Width</label>
+              <div class="input">
+                <div class="input-group" id="video-width">
+                  <input
+                    name="number"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="video-height">
+              <label class="control-label">Height</label>
+              <div class="input">
+                <div class="input-group" id="video-height">
+                  <input
+                    name="number"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row col-6" data-key="muted">
+              <label class="control-label">Muted</label>
+              <div class="input">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    name="muted"
+                    class="custom-control-input"
+                    type="checkbox"
+                    id="muted_check"
+                    value=""
+                  />
+                  <label class="custom-control-label" for="muted_check"></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row col-6" data-key="loop">
+              <label class="control-label">Loop</label>
+              <div class="input">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    name="loop"
+                    class="custom-control-input"
+                    type="checkbox"
+                    id="loop_check"
+                    value="loop"
+                  />
+                  <label class="custom-control-label" for="loop_check"></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row col-6" data-key="autoplay">
+              <label class="control-label">Autoplay</label>
+              <div class="input">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    name="autoplay"
+                    class="custom-control-input"
+                    type="checkbox"
+                    id="autoplay_check"
+                    value="autoplay"
+                  />
+                  <label
+                    class="custom-control-label"
+                    for="autoplay_check"
+                  ></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row col-6" data-key="playsinline">
+              <label class="control-label">Plays inline</label>
+              <div class="input">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    name="playsinline"
+                    class="custom-control-input"
+                    type="checkbox"
+                    id="playsinline_check"
+                    value="false"
+                  />
+                  <label
+                    class="custom-control-label"
+                    for="playsinline_check"
+                  ></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row col-6" data-key="controls">
+              <label class="control-label">Controls</label>
+              <div class="input">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    name="controls"
+                    class="custom-control-input"
+                    type="checkbox"
+                    id="controls_check"
+                    value="controls"
+                  />
+                  <label
+                    class="custom-control-label"
+                    for="controls_check"
+                  ></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          [hideToggle]="false"
+          *ngIf="currentEleTag === 'iframe'"
+        >
+          <mat-expansion-panel-header>IFrame</mat-expansion-panel-header>
+          <div class="section" data-section="iframe_header">
+            <div class="form-group row" data-key="IFrame">
+              <div class="input">
+                <div class="form-group col-8 d-inline-block">
+                  <input
+                    name="Iframe_URL"
+                    type="text"
+                    (ngModel)="(iFrameEle.src)"
+                    (ngModelChange)="iframeSrcUpdate.next($event)"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group col-4 d-inline-block">
+                  <button
+                    class="form-control"
+                    (click)="iFrameEle.src = ''"
+                    [disabled]="iFrameEle.src === ''"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false">
+          <mat-expansion-panel-header>Display</mat-expansion-panel-header>
+          <div class="section" data-section="display_header">
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="background-color"
+            >
+              <label class="control-label">Background Color</label>
+              <div class="input">
+                <div>
+                  <input
+                    name="background-color"
+                    type="color"
+                    [value]="backgroundColor || '#000000'"
+                    [(ngModel)]="backgroundColor"
+                    (ngModelChange)="updateProperty('backgroundColor', $event)"
+                    pattern="#[a-f0-9]{6}"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="color">
+              <label class="control-label">Text Color</label>
+              <div class="input">
+                <div>
+                  <input
+                    name="color"
+                    type="color"
+                    [value]="textColor || '#000000'"
+                    [(ngModel)]="textColor"
+                    (ngModelChange)="updateProperty('color', $event)"
+                    pattern="#[a-f0-9]{6}"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-12 d-inline-block" data-key="opacity">
+              <label class="control-label">Opacity</label>
+              <div class="input">
+                <div>
+                  <!-- <mat-slider style="border: none;"
+                              class="form-control" min="0" max="1" step="0.1" thumbLabel="true"
+                              [(ngModel)]="styles.opacity"
+                              (ngModelChange)="updateProperty('opacity', $event)"></mat-slider> -->
+  
+                  <mat-slider
+                    step="10"
+                    showTickMarks
+                    discrete
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    thumbLabel="true"
+                    (ngModelChange)="updateProperty('opacity', $event)"
+                    [(ngModel)]="styles.opacity"
+                  >
+                    <input matSliderThumb />
+                  </mat-slider>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="display">
+              <label class="control-label">Display</label>
+              <div class="input">
+                <div>
+                  <select
+                    class="form-control"
+                    [(ngModel)]="styles.display"
+                    (ngModelChange)="updateProperty('display', $event)"
+                  >
+                    <option value="block">Block</option>
+                    <option value="inline">Inline</option>
+                    <option value="inline-block">Inline Block</option>
+                    <option value="none">none</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="position">
+              <label class="control-label">Position</label>
+              <div class="input">
+                <div>
+                  <select
+                    class="form-control custom-select"
+                    [(ngModel)]="styles.position"
+                    (ngModelChange)="updateProperty('position', $event)"
+                  >
+                    <option value="static">Static</option>
+                    <option value="fixed">Fixed</option>
+                    <option value="relative">Relative</option>
+                    <option value="absolute">Absolute</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="top">
+              <label class="control-label">Top</label>
+              <div class="input">
+                <div class="input-group auto" id="cssunit-top">
+                  <input
+                    name="number"
+                    [(ngModel)]="position.top.val"
+                    (ngModelChange)="updateProperty('top', $event, position)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="position.top.unit"
+                      (ngModelChange)="updateProperty('top', $event, position)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="left">
+              <label class="control-label">Left</label>
+              <div class="input">
+                <div class="input-group auto" id="cssunit-left">
+                  <input
+                    name="number"
+                    [(ngModel)]="position.left.val"
+                    (ngModelChange)="updateProperty('left', $event, position)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="position.left.unit"
+                      (ngModelChange)="updateProperty('left', $event, position)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="bottom">
+              <label class="control-label">Bottom</label>
+              <div class="input">
+                <div class="input-group auto" id="cssunit-bottom">
+                  <input
+                    name="number"
+                    [(ngModel)]="position.bottom.val"
+                    (ngModelChange)="updateProperty('bottom', $event, position)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="position.bottom.unit"
+                      (ngModelChange)="updateProperty('bottom', $event, position)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="right">
+              <label class="control-label">Right</label>
+              <div class="input">
+                <div class="input-group auto" id="cssunit-right">
+                  <input
+                    name="number"
+                    [(ngModel)]="position.right.val"
+                    (ngModelChange)="updateProperty('right', $event, position)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="position.right.unit"
+                      (ngModelChange)="updateProperty('right', $event, position)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-12 d-inline-block" data-key="float">
+              <label class="control-label">Float</label>
+              <div class="input">
+                <div
+                  class="btn-group btn-group-toggle btn-group btn-group-fullwidth clearfix"
+                  data-toggle="buttons"
+                >
+                  <mat-button-toggle-group
+                    class=""
+                    appearance="legacy"
+                    name="floatStyle"
+                    style=""
+                    [(ngModel)]="styles.float"
+                    (ngModelChange)="updateProperty('float', $event)"
+                  >
+                    <mat-button-toggle value="none"
+                      ><i class="material-icons">close</i></mat-button-toggle
+                    >
+                    <mat-button-toggle value="left"
+                      ><i class="material-icons"
+                        >format_align_left</i
+                      ></mat-button-toggle
+                    >
+                    <mat-button-toggle value="right"
+                      ><i class="material-icons"
+                        >format_align_right</i
+                      ></mat-button-toggle
+                    >
+                  </mat-button-toggle-group>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false">
+          <mat-expansion-panel-header>Typography</mat-expansion-panel-header>
+          <div class="section" data-section="typography_header">
+            <div class="form-group col-6 d-inline-block" data-key="font-family">
+              <label class="control-label">Font family</label>
+              <div class="input">
+                <div>
+                  <select
+                    class="form-control custom-select"
+                    [(ngModel)]="styles.fontFamily"
+                    (ngModelChange)="updateProperty('fontFamily', $event)"
+                  >
+                    <option value="">Default</option>
+                    <option value="Arial, Helvetica, sans-serif">Arial</option>
+                    <option
+                      value="Lucida Sans Unicode"
+                      lucida=""
+                      grande=""
+                      sans-serif=""
+                    >
+                      Lucida Grande
+                    </option>
+                    <option
+                      value="Palatino Linotype"
+                      book=""
+                      antiqua=""
+                      palatino=""
+                      serif=""
+                    >
+                      Palatino Linotype
+                    </option>
+                    <option value="" times="" new="" roman="" times="" serif="">
+                      Times New Roman
+                    </option>
+                    <option value="Georgia, serif">Georgia, serif</option>
+                    <option value="Tahoma, Geneva, sans-serif">Tahoma</option>
+                    <option value="Comic Sans MS, cursive, sans-serif">
+                      Comic Sans
+                    </option>
+                    <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                    <option value="Impact, Charcoal, sans-serif">Impact</option>
+                    <option value="Arial Black, Gadget, sans-serif">
+                      Arial Black
+                    </option>
+                    <option value="Trebuchet MS, Helvetica, sans-serif">
+                      Trebuchet
+                    </option>
+                    <option value="Courier New" courier="" monospace="">
+                      Courier New", Courier, monospace
+                    </option>
+                    <option value="Brush Script MT, sans-serif">
+                      Brush Script
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="font-weight">
+              <label class="control-label">Font weight</label>
+              <div class="input">
+                <div>
+                  <select
+                    class="form-control custom-select"
+                    [(ngModel)]="styles.fontWeight"
+                    (ngModelChange)="updateProperty('fontWeight', $event)"
+                  >
+                    <option value="">Default</option>
+                    <option value="100">Thin</option>
+                    <option value="200">Extra-Light</option>
+                    <option value="300">Light</option>
+                    <option value="400">Normal</option>
+                    <option value="500">Medium</option>
+                    <option value="600">Semi-Bold</option>
+                    <option value="700">Bold</option>
+                    <option value="800">Extra-Bold</option>
+                    <option value="900">Ultra-Bold</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group col-6 d-inline-block" data-key="font-size">
+              <label class="control-label">Font Size</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-font-size">
+                  <input
+                    name="number"
+                    [(ngModel)]="typography.fontSize.val"
+                    (ngModelChange)="
+                      updateProperty('fontSize', $event, typography)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                      [(ngModel)]="typography.fontSize.unit"
+                      (ngModelChange)="
+                        updateProperty('fontSize', $event, typography)
+                      "
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="color">
+              <label class="control-label">Text Color</label>
+              <div class="input">
+                <div>
+                  <input
+                    name="color"
+                    type="color"
+                    [value]="textColor || '#000000'"
+                    [(ngModel)]="textColor"
+                    (ngModelChange)="updateProperty('color', $event)"
+                    pattern="#[a-f0-9]{6}"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-12 d-inline-block" data-key="text-align">
+              <label class="control-label">Text align</label>
+              <div class="input">
+                <div class="btn-group" data-toggle="buttons">
+                  <mat-button-toggle-group
+                    class=""
+                    appearance="legacy"
+                    name="floatStyle"
+                    style=""
+                    [(ngModel)]="styles.textAlign"
+                    (ngModelChange)="updateProperty('textAlign', $event)"
+                  >
+                    <mat-button-toggle value="left"
+                      ><i class="material-icons"
+                        >format_align_left</i
+                      ></mat-button-toggle
+                    >
+                    <mat-button-toggle value="center"
+                      ><i class="material-icons"
+                        >format_align_center</i
+                      ></mat-button-toggle
+                    >
+                    <mat-button-toggle value="right"
+                      ><i class="material-icons"
+                        >format_align_right</i
+                      ></mat-button-toggle
+                    >
+                    <mat-button-toggle value="justify"
+                      ><i class="material-icons"
+                        >format_align_justify</i
+                      ></mat-button-toggle
+                    >
+                  </mat-button-toggle-group>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="line-height">
+              <label class="control-label">Line height</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-line-height">
+                  <input
+                    name="number"
+                    [(ngModel)]="typography.lineHeight.val"
+                    (ngModelChange)="
+                      updateProperty('lineHeight', $event, typography)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                      [(ngModel)]="typography.lineHeight.unit"
+                      (ngModelChange)="
+                        updateProperty('lineHeight', $event, typography)
+                      "
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="letter-spacing"
+            >
+              <label class="control-label">Letter spacing</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-letter-spacing">
+                  <input
+                    name="number"
+                    [(ngModel)]="typography.letterSpacing.val"
+                    (ngModelChange)="
+                      updateProperty('letterSpacing', $event, typography)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="typography.letterSpacing.unit"
+                      (ngModelChange)="
+                        updateProperty('letterSpacing', $event, typography)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false">
+          <mat-expansion-panel-header>Size</mat-expansion-panel-header>
+          <div class="section" data-section="size_header">
+            <div class="form-group col-6 d-inline-block" data-key="width">
+              <label class="control-label">Width</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-width">
+                  <input
+                    name="number"
+                    type="number"
+                    value=""
+                    [(ngModel)]="size.width.val"
+                    (ngModelChange)="updateProperty('width', $event)"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="size.width.unit"
+                      (ngModelChange)="updateProperty('width', $event)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="height">
+              <label class="control-label">Height</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-height">
+                  <input
+                    name="number"
+                    [(ngModel)]="size.height.val"
+                    (ngModelChange)="updateProperty('height', $event)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="size.height.unit"
+                      (ngModelChange)="updateProperty('height', $event)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="min-width">
+              <label class="control-label">Min Width</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-min-width">
+                  <input
+                    name="number"
+                    [(ngModel)]="size.minWidth.val"
+                    (ngModelChange)="updateProperty('minWidth', $event)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="size.minWidth.unit"
+                      (ngModelChange)="updateProperty('minWidth', $event)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="min-height">
+              <label class="control-label">Min Height</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-min-height">
+                  <input
+                    name="number"
+                    [(ngModel)]="size.minHeight.val"
+                    (ngModelChange)="updateProperty('minHeight', $event)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="size.minHeight.unit"
+                      (ngModelChange)="updateProperty('minHeight', $event)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="max-width">
+              <label class="control-label">Max Width</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-max-width">
+                  <input
+                    name="number"
+                    [(ngModel)]="size.maxWidth.val"
+                    (ngModelChange)="updateProperty('maxWidth', $event)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="size.maxWidth.unit"
+                      (ngModelChange)="updateProperty('maxWidth', $event)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="max-height">
+              <label class="control-label">Max Height</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-max-height">
+                  <input
+                    name="number"
+                    [(ngModel)]="size.maxHeight.val"
+                    (ngModelChange)="updateProperty('maxHeight', $event)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="size.maxHeight.unit"
+                      (ngModelChange)="updateProperty('maxHeight', $event)"
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false">
+          <mat-expansion-panel-header
+            >Background Image</mat-expansion-panel-header
+          >
+          <div class="section" data-section="background_image_header">
+            <div class="form-group row" data-key="Image">
+              <label class="control-label">Image</label>
+              <div class="input">
+                <div>
+                  <div class="form-group col-8 d-inline-block">
+                    <input
+                      name="Image"
+                      type="text"
+                      [(ngModel)]="backgroundImgName"
+                      class="form-control"
+                      disabled
+                    />
+                  </div>
+                  <div class="form-group col-4 d-inline-block">
+                    <button
+                      class="form-control"
+                      (click)="removeBgImage()"
+                      [disabled]="backgroundImgName === 'None'"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                  <input
+                    name="file_ImgBg"
+                    type="file"
+                    (change)="imageToBase64URL($event)"
+                    class="form-control"
+                    [attr.disabled]="currentEleTag !== 'img' ? null : ''"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="background-position-x"
+            >
+              <label class="control-label">Repeat</label>
+              <div class="input">
+                <div>
+                  <select
+                    [(ngModel)]="styles.backgroundRepeat"
+                    (ngModelChange)="updateProperty('backgroundRepeat', $event)"
+                    class="form-control custom-select"
+                  >
+                    <option value="">Default</option>
+                    <option value="repeat-x">repeat-x</option>
+                    <option value="repeat-y">repeat-y</option>
+                    <option value="no-repeat">no-repeat</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="background-position-y"
+            >
+              <label class="control-label">Size</label>
+              <div class="input">
+                <div>
+                  <select
+                    [(ngModel)]="styles.backgroundSize"
+                    (ngModelChange)="updateProperty('backgroundSize', $event)"
+                    class="form-control custom-select"
+                  >
+                    <option value="">Default</option>
+                    <option value="contain">contain</option>
+                    <option value="cover">cover</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="background-position-x"
+            >
+              <label class="control-label">Position x</label>
+              <div class="input">
+                <div>
+                  <select
+                    [(ngModel)]="styles.backgroundPositionX"
+                    (ngModelChange)="
+                      updateProperty('backgroundPositionX', $event)
+                    "
+                    class="form-control custom-select"
+                  >
+                    <option value="">Default</option>
+                    <option value="center">center</option>
+                    <option value="right">right</option>
+                    <option value="left">left</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="background-position-y"
+            >
+              <label class="control-label">Position y</label>
+              <div class="input">
+                <div>
+                  <select
+                    [(ngModel)]="styles.backgroundPositionY"
+                    (ngModelChange)="
+                      updateProperty('backgroundPositionY', $event)
+                    "
+                    class="form-control custom-select"
+                  >
+                    <option value="">Default</option>
+                    <option value="center">center</option>
+                    <option value="top">top</option>
+                    <option value="bottom">bottom</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false">
+          <mat-expansion-panel-header>Border</mat-expansion-panel-header>
+          <div class="section" data-section="border_header">
+            <div class="form-group col-12 d-inline-block" data-key="border-style">
+              <label class="control-label">Style</label>
+              <div class="input">
+                <div>
+                  <select
+                    [(ngModel)]="styles.borderStyle"
+                    (ngModelChange)="updateProperty('borderStyle', $event)"
+                    class="form-control custom-select"
+                  >
+                    <option value="">Default</option>
+                    <option value="solid">Solid</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="dashed">Dashed</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="border-width">
+              <label class="control-label">Width</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-width">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderWidth.val"
+                    (ngModelChange)="
+                      updateProperty('borderWidth', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderWidth.unit"
+                      (ngModelChange)="
+                        updateProperty('borderWidth', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="border-color">
+              <label class="control-label">Color</label>
+              <div class="input">
+                <div>
+                  <input
+                    name="border-color"
+                    type="color"
+                    [value]="borderColor || '#000000'"
+                    [(ngModel)]="borderColor"
+                    (ngModelChange)="updateProperty('borderColor', $event)"
+                    pattern="#[a-f0-9]{6}"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group col-12 d-inline-block" data-key="border-style">
+              <label class="control-label">Borders</label>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="border-top">
+              <label class="control-label">Top</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-top">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderTopWidth.val"
+                    (ngModelChange)="
+                      updateProperty('borderTopWidth', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderTopWidth.unit"
+                      (ngModelChange)="
+                        updateProperty('borderTopWidth', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="border-right">
+              <label class="control-label">Right</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-right">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderRightWidth.val"
+                    (ngModelChange)="
+                      updateProperty('borderRightWidth', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderRightWidth.unit"
+                      (ngModelChange)="
+                        updateProperty('borderRightWidth', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="border-bottom">
+              <label class="control-label">Bottom</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-bottom">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderBottomWidth.val"
+                    (ngModelChange)="
+                      updateProperty('borderBottomWidth', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderBottomWidth.unit"
+                      (ngModelChange)="
+                        updateProperty('borderBottomWidth', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="border-left">
+              <label class="control-label">Left</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-left">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderLeftWidth.val"
+                    (ngModelChange)="
+                      updateProperty('borderLeftWidth', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderLeftWidth.unit"
+                      (ngModelChange)="
+                        updateProperty('borderLeftWidth', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group col-12 d-inline-block" data-key="border-style">
+              <label class="control-label">Border Radius</label>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="border-top-left-radius"
+            >
+              <label class="control-label">Top Left</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-top-left-radius">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderTopLeftRadius.val"
+                    (ngModelChange)="
+                      updateProperty('borderTopLeftRadius', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderTopLeftRadius.unit"
+                      (ngModelChange)="
+                        updateProperty('borderTopLeftRadius', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="border-top-right-radius"
+            >
+              <label class="control-label">Top Right</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-top-right-radius">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderTopRightRadius.val"
+                    (ngModelChange)="
+                      updateProperty('borderTopRightRadius', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderTopRightRadius.unit"
+                      (ngModelChange)="
+                        updateProperty('borderTopRightRadius', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="border-bottom-left-radius"
+            >
+              <label class="control-label">Bottom Left</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-bottom-left-radius">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderBottomLeftRadius.val"
+                    (ngModelChange)="
+                      updateProperty('borderBottomLeftRadius', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderBottomLeftRadius.unit"
+                      (ngModelChange)="
+                        updateProperty('borderBottomLeftRadius', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="border-bottom-right-radius"
+            >
+              <label class="control-label">Bottom Right</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-border-bottom-right-radius">
+                  <input
+                    name="number"
+                    [(ngModel)]="border.borderBottomRightRadius.val"
+                    (ngModelChange)="
+                      updateProperty('borderBottomRightRadius', $event, border)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="border.borderBottomRightRadius.unit"
+                      (ngModelChange)="
+                        updateProperty('borderBottomRightRadius', $event, border)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false">
+          <mat-expansion-panel-header>Margin</mat-expansion-panel-header>
+          <div class="section" data-section="margins_header">
+            <div class="form-group col-6 d-inline-block" data-key="margin-top">
+              <label class="control-label">Top</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-margin-top">
+                  <input
+                    name="number"
+                    [(ngModel)]="margin.marginTop.val"
+                    (ngModelChange)="updateProperty('marginTop', $event, margin)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="margin.marginTop.unit"
+                      (ngModelChange)="
+                        updateProperty('marginTop', $event, margin)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="margin-right">
+              <label class="control-label">Right</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-margin-right">
+                  <input
+                    name="number"
+                    [(ngModel)]="margin.marginRight.val"
+                    (ngModelChange)="
+                      updateProperty('marginRight', $event, margin)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="margin.marginRight.unit"
+                      (ngModelChange)="
+                        updateProperty('marginRight', $event, margin)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="margin-bottom">
+              <label class="control-label">Bottom</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-margin-bottom">
+                  <input
+                    name="number"
+                    [(ngModel)]="margin.marginBottom.val"
+                    (ngModelChange)="
+                      updateProperty('marginBottom', $event, margin)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="margin.marginBottom.unit"
+                      (ngModelChange)="
+                        updateProperty('marginBottom', $event, margin)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="margin-left">
+              <label class="control-label">Left</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-margin-left">
+                  <input
+                    name="number"
+                    [(ngModel)]="margin.marginLeft.val"
+                    (ngModelChange)="updateProperty('marginLeft', $event, margin)"
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="margin.marginLeft.unit"
+                      (ngModelChange)="
+                        updateProperty('marginLeft', $event, margin)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false">
+          <mat-expansion-panel-header>Padding</mat-expansion-panel-header>
+          <div class="section" data-section="paddings_header">
+            <div class="form-group col-6 d-inline-block" data-key="padding-top">
+              <label class="control-label">Top</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-padding-top">
+                  <input
+                    name="number"
+                    [(ngModel)]="padding.paddingTop.val"
+                    (ngModelChange)="
+                      updateProperty('paddingTop', $event, padding)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="padding.paddingTop.unit"
+                      (ngModelChange)="
+                        updateProperty('paddingTop', $event, padding)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="padding-right">
+              <label class="control-label">Right</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-padding-right">
+                  <input
+                    name="number"
+                    [(ngModel)]="padding.paddingRight.val"
+                    (ngModelChange)="
+                      updateProperty('paddingRight', $event, padding)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="padding.paddingRight.unit"
+                      (ngModelChange)="
+                        updateProperty('paddingRight', $event, padding)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-6 d-inline-block"
+              data-key="padding-bottom"
+            >
+              <label class="control-label">Bottom</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-padding-bottom">
+                  <input
+                    name="number"
+                    [(ngModel)]="padding.paddingBottom.val"
+                    (ngModelChange)="
+                      updateProperty('paddingBottom', $event, padding)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="padding.paddingBottom.unit"
+                      (ngModelChange)="
+                        updateProperty('paddingBottom', $event, padding)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 d-inline-block" data-key="padding-left">
+              <label class="control-label">Left</label>
+              <div class="input">
+                <div class="input-group" id="cssunit-padding-left">
+                  <input
+                    name="number"
+                    [(ngModel)]="padding.paddingLeft.val"
+                    (ngModelChange)="
+                      updateProperty('paddingLeft', $event, padding)
+                    "
+                    type="number"
+                    value="container"
+                    class="form-control"
+                  />
+                  <div class="input-group-append">
+                    <select
+                      [(ngModel)]="padding.paddingLeft.unit"
+                      (ngModelChange)="
+                        updateProperty('paddingLeft', $event, padding)
+                      "
+                      class="form-control custom-select small-arrow"
+                      name="unit"
+                    >
+                      <option value="em">em</option>
+                      <option value="px">px</option>
+                      <option value="%">%</option>
+                      <option value="rem">rem</option>
+                      <option value="auto">auto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div>
+      <div class="p-1">
+        <label style="font-size: 14px">Value</label>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-light"><i class="fas fa-times"></i></button
+          ><input class="form-control" type="text" (blur)="setname($event)"/>
+        </div>
+      </div>
+  
+    </div>
+  </ng-container>
+<ng-container *ngIf="selectedType == 'integration'">
+  <div class="panel-style ">
+    Properties
+  </div>
+  <div class="text-center font-13">
+    <span> Navigation  </span>
+      <p>Type : Open Page</p>
+  </div>
+  <div class="card border-0">
+    <div class="ms-2">
+      <p>Event source</p>
+      <mat-form-field>
+        <mat-select>
+          <mat-option *ngFor="let event of eventsList" [value]="event.value">
+            {{event.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+<div class="outputBoxSec">
+  <p class="font-13">Expression</p>
+  <div #editor style="height: 300px;"></div>
+</div>
+<div>
+  <p class="font-13 fw-bolder">Toast Message</p>
+  <input type="text" class="form-control" />
+</div>
+</ng-container>
+</div>

@@ -1,0 +1,14 @@
+<div [ngStyle]="{'background' : squareColor}"
+     style="height: 100%;"
+     class="grid-square"
+     [ngClass]="{disabled: square.disabled, noevents: square.type !== 'basic'}">
+    <span *ngIf="square.type === 'header'" class="header-text">{{square.label}}</span>
+    <img *ngIf="square.type === 'image'" [src]="setImageSrc(square.image)" alt="">
+    <div class="icon-with-label" [style.height]="square.type === 'image' ? 0 : '100%'">
+        <div *ngIf="square.type === 'basic'" class="icon">
+            <img [src]="setImageSrc(square.icon)" alt="">
+        </div>
+        <span mat-card-subtitle *ngIf="square.type === 'basic'" class="label-text">{{square.label}}</span>
+    </div>
+    <div *ngIf="square.type === 'header'" class="triangle" [style.border-left-color]="squareColor"></div>
+</div>

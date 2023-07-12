@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#fff}
+        </style>
+    </defs>
+    <g id="Group_681" data-name="Group 681" transform="translate(-276)">
+        <path id="Rectangle_917" d="M0 0h36v36H0z" class="cls-1" data-name="Rectangle 917" transform="translate(276)"/>
+        <g id="Group_659" data-name="Group 659">
+            <path id="Rectangle_918" d="M0 0h6v6H0z" class="cls-2" data-name="Rectangle 918" transform="translate(283.5 8.5)"/>
+            <g id="Group_658" data-name="Group 658">
+                <path id="Rectangle_919" d="M0 0h5v5H0z" class="cls-1" data-name="Rectangle 919" transform="translate(284 9)"/>
+                <path id="Path_751" d="M283 8v7h7V8zm6 6h-5V9h5z" data-name="Path 751"/>
+            </g>
+        </g>
+        <g id="Group_660" data-name="Group 660">
+            <path id="Path_752" d="M291.5 9v3.5h4.5" class="cls-2" data-name="Path 752"/>
+            <path id="Path_753" d="M296 13h-5V9h1v3h4z" data-name="Path 753"/>
+        </g>
+        <path id="Line_570" d="M0 0v4" class="cls-2" data-name="Line 570" transform="translate(283.5 16)"/>
+        <g id="Group_661" data-name="Group 661">
+            <path id="Line_571" d="M2.5 0H0" class="cls-2" data-name="Line 571" transform="translate(283.5 18.5)"/>
+            <path id="Path_754" d="M286 18h-2v-2h-1v4h1v-1h2z" data-name="Path 754"/>
+        </g>
+        <path id="Path_755" d="M287.5 20v-2.5h5v2h3.5" class="cls-2" data-name="Path 755"/>
+        <g id="Group_662" data-name="Group 662">
+            <path id="Line_572" d="M0 0v1.5" class="cls-2" data-name="Line 572" transform="translate(290.5 16)"/>
+            <path id="Path_756" d="M293 19v-2h-2v-1h-1v1h-3v3h1v-2h4v2h4v-1z" data-name="Path 756"/>
+        </g>
+        <path id="Path_757" d="M291 21.5h2.5v6H291" class="cls-2" data-name="Path 757"/>
+        <g id="Group_663" data-name="Group 663">
+            <path id="Line_573" d="M0 0h2.5" class="cls-2" data-name="Line 573" transform="translate(293.5 25.5)"/>
+            <path id="Path_758" d="M296 25h-2v-4h-3v1h2v5h-2v1h3v-2h2z" data-name="Path 758"/>
+        </g>
+        <g id="Group_664" data-name="Group 664">
+            <path id="Path_759" d="M289 19.5h2" class="cls-2" data-name="Path 759"/>
+            <path id="Rectangle_920" d="M0 0h2v1H0z" data-name="Rectangle 920" transform="translate(289 19)"/>
+        </g>
+        <g id="Group_665" data-name="Group 665">
+            <path id="Line_574" d="M0 0h1" class="cls-2" data-name="Line 574" transform="translate(286 11.5)"/>
+            <path id="Rectangle_921" d="M0 0h1v1H0z" data-name="Rectangle 921" transform="translate(286 11)"/>
+        </g>
+        <g id="Group_666" data-name="Group 666">
+            <path id="Rectangle_922" d="M0 0h6v6H0z" class="cls-2" data-name="Rectangle 922" transform="translate(297.5 8.5)"/>
+            <path id="Path_760" d="M304 15h-7V8h7zm-6-1h5V9h-5z" data-name="Path 760"/>
+        </g>
+        <g id="Group_667" data-name="Group 667">
+            <path id="Line_575" d="M0 0h1" class="cls-2" data-name="Line 575" transform="translate(300 11.5)"/>
+            <path id="Rectangle_923" d="M0 0h1v1H0z" data-name="Rectangle 923" transform="translate(300 11)"/>
+        </g>
+        <g id="Group_668" data-name="Group 668">
+            <path id="Rectangle_924" d="M0 0h5v5H0z" class="cls-2" data-name="Rectangle 924" transform="translate(298 22)"/>
+            <path id="Path_761" d="M297 21v7h7v-7zm6 6h-5v-5h5z" data-name="Path 761"/>
+        </g>
+        <g id="Group_669" data-name="Group 669">
+            <path id="Line_576" d="M0 0h1" class="cls-2" data-name="Line 576" transform="translate(300 24.5)"/>
+            <path id="Rectangle_925" d="M0 0h1v1H0z" data-name="Rectangle 925" transform="translate(300 24)"/>
+        </g>
+        <g id="Group_670" data-name="Group 670">
+            <path id="Rectangle_926" d="M0 0h6v6H0z" class="cls-2" data-name="Rectangle 926" transform="translate(283.5 21.5)"/>
+            <path id="Path_762" d="M290 28h-7v-7h7zm-6-1h5v-5h-5z" data-name="Path 762"/>
+        </g>
+        <g id="Group_671" data-name="Group 671">
+            <path id="Line_577" d="M0 0h1" class="cls-2" data-name="Line 577" transform="translate(286 24.5)"/>
+            <path id="Rectangle_927" d="M0 0h1v1H0z" data-name="Rectangle 927" transform="translate(286 24)"/>
+        </g>
+        <g id="Group_672" data-name="Group 672">
+            <path id="Path_763" d="M295.5 14v2.5H294" class="cls-2" data-name="Path 763"/>
+            <path id="Path_764" d="M296 17h-2v-1h1v-2h1z" data-name="Path 764"/>
+        </g>
+        <g id="Group_673" data-name="Group 673">
+            <path id="Line_578" d="M0 0h3" class="cls-2" data-name="Line 578" transform="translate(291 14.5)"/>
+            <path id="Rectangle_928" d="M0 0h3v1H0z" data-name="Rectangle 928" transform="translate(291 14)"/>
+        </g>
+        <g id="Group_674" data-name="Group 674">
+            <path id="Path_765" d="M303.5 16v3.5H299" class="cls-2" data-name="Path 765"/>
+            <path id="Path_766" d="M304 20h-5v-1h4v-3h1z" data-name="Path 766"/>
+        </g>
+        <path id="Line_579" d="M4 0H0" class="cls-2" data-name="Line 579" transform="translate(297 16.5)"/>
+        <g id="Group_675" data-name="Group 675">
+            <path id="Line_580" d="M0 1.5V0" class="cls-2" data-name="Line 580" transform="translate(299.5 16.5)"/>
+            <path id="Path_767" d="M301 16h-4v1h2v1h1v-1h1z" data-name="Path 767"/>
+        </g>
+        <g id="Group_676" data-name="Group 676">
+            <path id="Line_581" d="M0 0v2" class="cls-2" data-name="Line 581" transform="translate(297.5 18)"/>
+            <path id="Rectangle_929" d="M0 0h1v2H0z" data-name="Rectangle 929" transform="translate(297 18)"/>
+        </g>
+        <g id="Group_677" data-name="Group 677">
+            <path id="Line_582" d="M0 0v3" class="cls-2" data-name="Line 582" transform="translate(295.5 21)"/>
+            <path id="Rectangle_930" d="M0 0h1v3H0z" data-name="Rectangle 930" transform="translate(295 21)"/>
+        </g>
+        <g id="Group_678" data-name="Group 678">
+            <path id="Path_768" d="M296 27.5h-1" class="cls-2" data-name="Path 768"/>
+            <path id="Rectangle_931" d="M0 0h1v1H0z" data-name="Rectangle 931" transform="translate(295 27)"/>
+        </g>
+        <g id="Group_679" data-name="Group 679">
+            <path id="Line_583" d="M0 0v3" class="cls-2" data-name="Line 583" transform="translate(291.5 23)"/>
+            <path id="Rectangle_932" d="M0 0h1v3H0z" data-name="Rectangle 932" transform="translate(291 23)"/>
+        </g>
+        <g id="Group_680" data-name="Group 680">
+            <path id="Path_769" d="M294 10.5h1.5V8" class="cls-2" data-name="Path 769"/>
+            <path id="Path_770" d="M296 11h-2v-1h1V8h1z" data-name="Path 770"/>
+        </g>
+    </g>
+</svg>

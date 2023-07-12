@@ -1,0 +1,42 @@
+<ng-container>
+  <div class="modal-header">
+    <h4 class="modal-title" style="font-weight: 600;">Create <span class="pinky">Screen</span></h4>
+    <button type="button" class="close btn-close" (click)="activeModal.dismiss()">
+    </button>
+  </div>
+
+  <div class="modal-body" style="background: #f6f6f6;">
+    <form name="createScreenForm" [formGroup]="createScreenForm" (ngSubmit)="createScreen()">
+      <div class="plan-div">
+        <div class="white-card">
+          <div class="row">
+            <div class="col-12">
+              <label>Screen Name <sup>*</sup></label>
+              <div class="input-group mb-1">
+                <input type="text" required class="form-control" id="screenname" formControlName="screenname"
+                  placeholder="Enter your screen name"
+                  [ngClass]="{ 'is-invalid': isScreenCreateSubmit && f1['screenname'].errors }">
+              </div>
+              <ng-container *ngIf="isScreenCreateSubmit && f1['screenname'].errors">
+                <div *ngIf="f1['screenname'].errors['required']" class="text-danger">Please enter your screen name</div>
+                <div class="text-danger" *ngIf="f1['screenname'].hasError('duplicateValue')">Screen already exit!</div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer mt-3">
+        <button type="button" class="btn btn-outline" (click)="activeModal.close()">Cancel</button>
+        <button class="btn btn-primary" [disabled]="isLoading" type="submit">
+          <ng-template #loadingTemplate>
+            <i class="fa fa-spinner fa-spin"></i> Loading...
+          </ng-template>
+          <ng-container *ngIf="!isLoading; else loadingTemplate">
+            <i class="fas fa-check"></i> Confirm, Proceed
+          </ng-container>
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-container>

@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row mt-5 p-3">
+        <div class="card p-0">
+            <div class="card-header  d-flex justify-content-between">
+              Profile Settings
+<div>
+    <a  routerLink="/projects" class="project-link" href="">Project</a>
+
+</div>
+            </div>
+            <div class="card-body ">
+             <div class="row">
+                <div class="col-lg-4 border-end p-3">
+                    <div style="border:2px solid #673ab7;width: 180px;padding-top:10px; border-radius:100%;border-bottom:1px solid white;margin-left: 70px;" class="text-center">
+                        <img id="Picture"  [src]='piciD ?profileImageSrc:"/assets/images/user.png"' style="width: 150px;height:150px; margin-bottom: 20px;border-radius: 50%;"  alt="">
+                    </div>
+                    <img  (click)="file.click()" style="position: relative;bottom:20px;left: 140px;cursor: pointer;" width="30" height="30" src="/assets/images/login/camera.svg" alt="">
+                    <input (change)="Filedata($event)" accept="image/*" #file style="display: none;" type="file">
+                    <div style="line-height: 1;margin-left:60px;">
+                 <span class="me-2 ms-5 fw-bold">{{userFirstName}}</span> <span class="fw-bold">{{userLastName}}</span>
+                 <p class="mt-2" >{{userEmailId}}</p>
+
+                    </div>
+                </div>
+                <div class="col ">
+                </div>
+                <div class="col-lg-5 profile p-3">
+                    <div class="profile-details  p-2  ">
+                        <form [formGroup]="userProfile"   (ngSubmit)="submit()" action="">
+                        <div class="mt-1">
+                            <label for="">First Name</label><br>
+                            <input [ngClass]="{'is-invalid':submitted && userProfile.controls.firstName.errors?.['required']}" formControlName="firstName" class="form-control mt-2" type="text" required>
+                            <span class="text-danger" *ngIf="submitted && userProfile.controls.firstName.errors?.['required']">First Name is Required</span>
+                        </div>
+                        <div class="mt-2">
+                            <label for="">Last Name</label><br>
+                            <input  [ngClass]="{'is-invalid':submitted && userProfile.controls.lastName.errors?.['required']}" formControlName="lastName"  class="form-control mt-2" type="text" required>
+                            <span class="text-danger" *ngIf="submitted && userProfile.controls.lastName.errors?.['required']">Last Name is Required</span>
+
+                        </div>
+                        <div class="mt-2">
+                            <label for="">Email</label><br>
+                            <input [value]='userEmailId'  disabled class="form-control mt-2" type="text">
+                        </div>
+                        <div class="mt-2">
+                            <label for="">Primary Phone Number</label><br>
+                            <input formControlName="phone" class="form-control mt-2" type="text">
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-update mt-4">Confirm,Update</button>
+                        </div>
+                    </form>
+                    </div>
+
+                </div>
+                <div class="col-2">
+
+                </div>
+                
+
+             </div>
+            </div>
+          </div>
+
+    </div>
+
+</div>

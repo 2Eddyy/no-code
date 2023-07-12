@@ -1,0 +1,22 @@
+export interface ScreenModel{
+    "domainKey" : string,
+    "clientDomainKey" : string,
+    "category" : string,
+    "tags" : string,
+    "screenid" : string,
+    "screenname" : string,
+    "app_id":string,
+    "screenimage" : string,
+    "screenitems": Array<any>,
+    "version": string,
+    "code": string,
+    "createdby": string,
+    "createdbyemail": string,
+    "createdtime": number,
+    "updatedtime": number,
+    "importedtime": number,
+    "config": string,
+    "description": string,
+    "market": string,
+    "type"?:string
+  }

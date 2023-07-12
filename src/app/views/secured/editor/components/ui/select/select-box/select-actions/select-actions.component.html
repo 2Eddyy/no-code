@@ -1,0 +1,19 @@
+<div class="actions" id="select_actions" style="">
+  <div class="btn"
+       id="drag-btn"
+       matTooltip="Drag element"
+       (click)="dragItem($event)"><mat-icon>drag_handle</mat-icon></div>
+  <div class="btn" id="parent-btn" matTooltip="Select parent" style="transform: rotate(90deg);"><mat-icon>subdirectory_arrow_left</mat-icon></div>
+  <div class="btn" id="up-btn" matTooltip="Move element up"><mat-icon>arrow_upward</mat-icon></div>
+  <div class="btn" id="down-btn" matTooltip="Move element down"><mat-icon>arrow_downward</mat-icon></div>
+  <div class="btn" id="clone-btn" matTooltip="Clone element"><mat-icon>file_copy</mat-icon></div>
+  <div class="btn" id="delete-btn" matTooltip="Remove element" (click)="removeElement()"><mat-icon>delete</mat-icon></div>
+</div>
+
+<div class="actions text-editor" id="text_editor" style="">
+  <div class="btn" id="bold-btn" matTooltip="Bold" (click)="executeCommand('bold')"><mat-icon>format_bold</mat-icon></div>
+  <div class="btn" id="italic-btn" matTooltip="Italic" (click)="executeCommand('italic')"><mat-icon>format_italic</mat-icon></div>
+  <div class="btn" id="underline-btn" matTooltip="Underline" (click)="executeCommand('underline')"><mat-icon>format_underlined</mat-icon></div>
+  <div class="btn" id="strike-btn" matTooltip="Strikeout" (click)="executeCommand('strikeThrough')"><mat-icon>format_strikethrough</mat-icon></div>
+  <div class="btn" id="link-btn" matTooltip="Create link" (click)="executeCommand('createLink')"><mat-icon>insert_link</mat-icon></div>
+</div>

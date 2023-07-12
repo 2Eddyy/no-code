@@ -1,0 +1,17 @@
+@import "../../../../../../editor/editor-theme.scss";
+:host {
+  display: flex;
+  .actions{
+    pointer-events: all;
+    display: flex;
+    background: $uni-accent-color;
+    padding: 0 0;
+    border-radius: 3px 3px 0 0;
+    div mat-icon {
+      color: #fff;
+    }
+  }
+  .text-editor {
+    display: none;
+  }
+}

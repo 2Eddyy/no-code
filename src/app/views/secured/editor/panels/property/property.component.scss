@@ -1,0 +1,169 @@
+@import "../../../../../views/secured/editor/editor-theme.scss";
+:host {
+  width: 100%;
+  #styles_console {
+    height: 100%;
+    overflow: hidden;
+    border-left: 1px solid #dddddd;
+    #header {
+      background-color: $uni-grey-color;
+      border-bottom: 1px solid #dddddd;
+      color: #464646;
+      padding: 10px;
+      font-weight: 700;
+    }
+    #console {
+      width: auto;
+      height: calc(100% - 55px);
+      overflow: auto;
+      display: flex;
+      flex-flow: wrap row;
+      align-content: flex-start;
+      margin: 10px;
+      &::-webkit-scrollbar {
+        display: none; // Hide the scrollbar
+      }
+      
+      .form-group {
+        display: inline-block !important;
+        margin-right: 0;
+        margin-left: 0;
+        > label {
+          font-size: 11px;
+          margin-bottom: 5px;
+          font-weight: 600;
+          color: #555;
+        }
+        input {
+          font-size: 12px;
+        }
+        .input {
+          width: 100%;
+          .form-control {
+            padding: .275rem 0.25rem;
+            font-size: 12px !important;
+          }
+          .input-group {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            width: 100%;
+            .input-group-append {
+              margin-left: -1px;
+              display: flex;
+              font-size: 12px;
+              .form-control {
+                padding: .275rem 0.25rem;
+                font-size: 12px !important;
+              }
+              .custom-select {
+                padding: .275rem 0.25rem;
+                display: inline-block;
+                font-size: 12px;
+                border-radius: 0.25rem;
+              }
+              .small-arrow {
+                background-position: right .15rem center;
+                border-radius: 0 0.25rem 0.25rem 0 !important;
+              }
+              select {
+              }
+            }
+          }
+          .btn-group {
+            width: 100%;
+            label {
+              ::ng-deep .material-icons {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+    mat-button-toggle-group {
+      box-shadow: none;
+      border: 1px solid $uni-accent-color;
+    }
+    .mat-button-toggle-checked {
+      color: #fff !important;
+      background-color: $uni-accent-color;
+      color: rgba(0, 0, 0, 0.54)
+    }
+
+    mat-accordion {
+      width: 100%;
+    }
+
+    ::ng-deep .mat-expansion-panel-header {
+      background-color: $uni-grey-color;
+      color: $black;
+      padding: 7px 20px;
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+
+    ::ng-deep .mat-expansion-indicator{
+      color: $gray-500;
+    }
+
+    ::ng-deep .mat-expansion-panel-body {
+      padding: 8px 12px 16px!important;
+    }
+
+    ::ng-deep .mat-button-toggle-label-content {
+      padding: 0 11px!important;
+    }
+
+    ::ng-deep .mat-accent .mat-slider-track-fill,
+    ::ng-deep .mat-accent .mat-slider-thumb,
+    ::ng-deep .mat-accent .mat-slider-thumb-label {
+      background-color: $uni-accent-color;
+    }
+
+    .btn-outline-primary {
+      color: $uni-accent-color;
+      border-color: $uni-accent-color;
+    }
+    .btn-outline-primary:hover {
+      color: #fff;
+      background-color: $uni-accent-color;
+      border-color: $uni-accent-color;
+    }
+    .btn-outline-primary:not(:disabled):not(.disabled).active,
+    .btn-outline-primary:not(:disabled):not(.disabled):active,
+    .show>.btn-outline-primary.dropdown-toggle {
+      color: #fff;
+      background-color: $uni-accent-color;
+      border-color: $uni-accent-color;
+    }
+  }
+}
+.active{
+  background-color: white;
+}
+#header{
+  padding: 5px 0px 0px 0px !important;
+}
+.properties{
+  font-size: 12px;
+  cursor: pointer;
+  border:1px solid #80808045;
+  border-bottom: none;
+  text-align: center;
+  
+}
+.panel-style{
+  background: #f3f3f3;
+    padding: 7px 10px;
+    font-size: 15px;
+}
+
+.outputBoxSec {
+  border: 1px solid #ccc;
+  padding: 10px!important;
+  border-radius: 3px;
+  background: #eee;
+  margin: 0 10px;
+}

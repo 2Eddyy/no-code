@@ -1,0 +1,41 @@
+<div class="integration-section-container">
+    <div class="expand position-relative w-100">
+      <div class="integrationContent" [ngClass]="{ 'expanded': isExpanded }" id="fullscreenDiv">
+      <div (click)="toggleExpansion()"  class="integration-btn">Integration  </div>
+      <div class="position-relative">
+      <div class="uparrow" (click)="toggleExpansion()"><i class="fas" [ngClass]="isExpanded ? 'fa-chevron-down' : 'fa-chevron-up'"></i></div>
+      </div>
+        <div class="content d-flex justify-content-between">
+          <div class="integration-list">
+              
+              <div *ngFor="let core of CoreList" class="pt-2">
+                <span class="text-uppercase font-13 integration-card-title">   {{ core.name }}</span>
+                <div class="section mb-1">
+                <div class="drag-drawflow panel-button mt-1" *ngFor="let node of core.nameList"draggable="true" (dragstart)="onDrawflowEvent($event)">
+                 <p class="text-center mb-0 card_icon">
+                  <img [src]="node.icon" alt="{{node.name}}">
+                 </p> 
+                 <span>{{ node.name }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="integration-section">
+            <!-- <button type="button" (click)="toggleFullscreen()" class="float-end m-2 px-2 py-0 btn btn-outline-secondary"><i class="fas fa-expand-alt"></i></button> -->
+            <div class="drawflow"
+            id="drawflow" 
+            (dragenter)="onDrawflowEvent($event)"
+            (dragleave)="onDrawflowEvent($event)"
+            (dragover)="onDrawflowEvent($event)"
+            (dragend)="onDrawflowEvent($event)"
+            (drop)="onDrawflowEvent($event)"
+          ></div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    <div class="last-up-time">
+      <p class="mb-0">Last Updated at 22 Mar 2023, 2:30 PM</p>
+    </div>
+  </div>

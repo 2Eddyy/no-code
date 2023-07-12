@@ -1,0 +1,318 @@
+.integrationContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  height: 30px;
+  /* Initial height */
+  transition: height 0.5s ease-in-out;
+  background-color: #fff;
+  z-index: 10;
+  width: 100%;
+}
+
+.expanded {
+  height: 300px;
+  /* Expanded height */
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  transform: translateY(100%);
+  /* Hide content below the container */
+  transition: transform 0.5s ease-in-out;
+  height: 270px;
+}
+
+.expanded .content {
+  transform: translateY(0);
+  /* Show content */
+}
+
+.last-up-time {
+  font-size: 11px;
+  border-top: 1px solid #ccc;
+  padding: 6px 5px;
+}
+
+.integration-btn {
+  width: 100%;
+  background-color: #34495e;
+  color: #fff;
+  text-align: left;
+  border: 0;
+  padding: 3px 20px;
+  // cursor: ns-resize; 
+}
+
+.integration-list {
+  width: 276px;
+  border-right: 1px solid #e0e0e0;
+  background-color: #f3f3f3;
+  height: 270px;
+  overflow: auto;
+}
+
+.integration-section {
+  width: 100%;
+  background-color: #f3f3f3;
+}
+
+.panel-button {
+  display: flex;
+  user-select: none;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 2px;
+  width: 67px;
+  height: 76px;
+  padding-top: 12px;
+  text-align: center;
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  transition: box-shadow 100ms ease-out;
+  margin: 0 2px;
+
+  span{
+    max-width: 100%;
+    display: block;
+    line-height: 1;
+    max-height: 2em;
+    position: relative;
+    font-size: 12px;
+  }
+}
+.card_icon {
+  pointer-events: none;
+  width: 36px;
+  height: 36px;
+  padding-bottom: 3px;
+}
+.panel-button:hover {
+  -webkit-box-shadow: 0 0 3px 0 rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 0 3px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 0 3px 0 rgba(0,0,0,0.25);
+}
+
+.uparrow {
+  position: absolute;
+  right: 10px;
+  top: -24px;
+  z-index: 10;
+  background: #34495e;
+  border-radius: 50%;
+  color: #fff;
+  padding: 3px 7px;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#drawflow {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep.node-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+::ng-deep.dark-blue{
+  background-color: #26085a;
+}
+::ng-deep.node-style{
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 15px;
+}
+::ng-deep.light-blue{
+  background-color: #3e0f93;
+}
+::ng-deep.drawflow_content_node {
+  width: 100%;
+}
+
+::ng-deep.drawflow-node {
+  // width: 200px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  z-index: 2;
+}
+
+::ng-deep.drawflow-node .inputs,
+::ng-deep.drawflow-node .outputs {
+  width: 0;
+}
+
+::ng-deep.drawflow-node .input:hover,
+::ng-deep.drawflow-node .output:hover {
+  background: #4ea9ff;
+}
+
+::ng-deep.drawflow-node .input,
+::ng-deep.drawflow-node .output {
+  height: 11px;
+  width: 11px;
+  position: relative;
+  border-radius: 50%;
+  cursor: crosshair;
+  z-index: -1;
+  margin-bottom: 5px;
+}
+
+::ng-deep.drawflow-node .input {
+  left: -6px;
+  top: 3px;
+  background-color: #26085a;
+}
+
+::ng-deep.drawflow-node .output {
+  right: 5px;
+  top: 3px;
+  background-color: #3e0f93;
+}
+
+::ng-deep.parent-drawflow {
+  display: flex;
+  overflow: hidden;
+  touch-action: none;
+  outline: none;
+}
+
+::ng-deep.drawflow {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  user-select: none;
+  perspective: 0;
+}
+
+::ng-deep.drawflow .parent-node {
+  position: relative;
+
+}
+
+::ng-deep.drawflow .drawflow-node.selected {
+  background: #34495e;
+  color: #fff;
+}
+
+::ng-deep.drawflow .drawflow-node:hover {
+  cursor: move;
+}
+
+::ng-deep.drawflow .drawflow-node .inputs,
+.drawflow .drawflow-node .outputs {
+  width: 0px;
+}
+
+::ng-deep.drawflow .drawflow-node .drawflow_content_node {
+  width: 100%;
+  display: block;
+}
+
+
+::ng-deep.drawflow svg {
+  z-index: 0;
+  position: absolute;
+  overflow: visible !important;
+}
+
+::ng-deep.drawflow .connection {
+  position: absolute;
+  pointer-events: none;
+  aspect-ratio: 1 / 1;
+}
+
+::ng-deep.drawflow .connection .main-path {
+  fill: none;
+  stroke-width: 3px;
+  stroke: #888;
+  pointer-events: all;
+}
+
+::ng-deep.drawflow .connection .main-path:hover {
+  stroke: #1266ab;
+  cursor: pointer;
+}
+
+::ng-deep.drawflow .connection .main-path.selected {
+  stroke: #43b993;
+}
+
+::ng-deep.drawflow .connection .point {
+  cursor: move;
+  stroke: black;
+  stroke-width: 2;
+  fill: white;
+  pointer-events: all;
+}
+
+::ng-deep.drawflow .connection .point.selected,
+::ng-deep.drawflow .connection .point:hover {
+  fill: #1266ab;
+}
+
+::ng-deep.drawflow .main-path {
+  fill: none;
+  stroke-width: 5px;
+  stroke: steelblue;
+}
+
+::ng-deep.drawflow-delete {
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: #d9e1e9;
+  z-index: 4;
+  border: 2px solid #34495e;
+  line-height: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 50%;
+  font-family: monospace;
+  cursor: pointer;
+  color: #000;
+}
+
+::ng-deep.drawflow>.drawflow-delete {
+  margin-left: -15px;
+  margin-top: 15px;
+}
+
+::ng-deep.parent-node .drawflow-delete {
+  right: -15px;
+  top: -15px;
+}
+
+.integration-card-title{
+  font-size: 11px;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.22px;
+  color: #000000;
+  display: block;
+  padding-left: 7px;
+  margin-bottom: 6px;
+}
+.section{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 4px;
+  padding-top: 4px;
+  height: auto;
+}
+.integration-section-container{
+  display: grid !important;
+    grid-template-columns: 1fr 15vw;
+}

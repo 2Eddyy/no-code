@@ -1,0 +1,214 @@
+<app-sub-header></app-sub-header>
+<div class="container-fluid p-0">
+    <div class="d-flex justify-content-between">
+        <div class="left-section">
+            <div class="search-section m-3 me-4 position-relative">
+                <input type="text" class="form-control search-field" placeholder="Search here...">
+                <div class="search-icon">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="overflow-style">
+                <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-2">
+                    <ngb-panel title="Template">
+                        <ng-template ngbPanelContent></ng-template>
+                    </ngb-panel>
+                    <ngb-panel>
+                        <ng-template ngbPanelTitle>
+                            <span>Layouts <small class="ms-2">(Column)</small></span>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div class="layout-section mt-1 p-1">
+                                <div *ngFor="let layout of layoutList">
+                                    <app-layout-component>
+                                        <p class="mb-1" name>{{layout.name}}</p>
+                                        <div class="row w-100 mx-auto" style="padding: 0px 13px;">
+                                            <div [class]="x" style="padding: 2px;"
+                                                *ngFor="let x of layout.column_array">
+                                                <div class="box-border"
+                                                    [style]="layout.col_flag ? 'height: 35px' : 'height: 15px'"></div>
+                                            </div>
+                                        </div>
+                                    </app-layout-component>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel title="Basic Elements1">
+                        <ng-template ngbPanelContent>
+                            <div class="layout-section mt-1 p-1">
+                                <div class="col-style" *ngFor="let element of basiceElementList">
+                                    <app-layout-component>
+                                        <p class="mb-1" style="font-size: 14px;" name>{{element.name}}</p>
+                                        <div class="basice-icon">
+                                            <img [src]="'../../../../assets/images/components/basic-elements/'+element.img" height="26px" />
+                                        </div>
+                                    </app-layout-component>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel title="Widgets">
+                        <ng-template ngbPanelContent>
+                            Widgets
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel title="E-charts">
+                        <ng-template ngbPanelContent>
+                            E-charts comes here
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+
+            </div>
+            <!-- <div class="left-arrow-collapse">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </div> -->
+        </div>
+        <div class="editor-section">
+            <div class="">
+                <ul ngbNav #nav="ngbNav" class="nav-tabs screen-section">
+                    <li [ngbNavItem]="1">
+                        <a ngbNavLink>Home Page</a>
+                        <ng-template ngbNavContent>
+                            <!-- <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                                <li [ngbNavItem]="1">
+                                    <a ngbNavLink>UI</a>
+                                    <ng-template ngbNavContent>
+                                        <h1>UI Area</h1>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2">
+                                    <a ngbNavLink>Integration</a>
+                                    <ng-template ngbNavContent>
+                                        <h1>Integration Area</h1>
+                                    </ng-template>
+                                </li>
+                            </ul>
+                            <div [ngbNavOutlet]="nav"></div> -->
+                        
+                            <div class="d-flex mt-2 justify-content-center">
+                                <div [ngClass]="{'btn-primary text-white' : isUIView}" class="btn-secondary bg-theme tab-style ui-btn" (click)="isUIView = true">UI</div>
+                                <div [ngClass]="{'btn-primary' : !isUIView}" class="btn-secondary bg-theme tab-style int-btn" (click)="isUIView = false">Integration</div>
+                            </div>
+                
+                            <div *ngIf="isUIView" #appScreenHtml class="editor-container p-3 mx-5 my-dropzone d-flex justify-content-center">
+                                <div class="bg-white">
+                                    <h1>Hello</h1>
+                                    <h2>Hello</h2>
+                                    <h3>Hello</h3>
+                                    <h4>Hello</h4>
+                                    <h5>Hello</h5>
+                                    <h6>Hello</h6>
+                                </div>
+                                <div class="w-100"></div>
+                            </div>
+
+                            <div *ngIf="!isUIView" class="editor-container p-3 mx-5 my-dropzone d-flex justify-content-center">
+                                <div class="bg-white">
+                                    <h1>Integration Page</h1>
+                                </div>
+                                <div class="w-100"></div>
+                            </div>
+                        </ng-template>
+                    </li>
+
+                    <li class="c-pointer">
+                        <i class="fa fa-plus mt-2" aria-hidden="true"></i>
+                    </li>
+                </ul>
+                <div [ngbNavOutlet]="nav" class=""></div>
+            </div>
+        </div>
+        <div class="property-section pt-2">
+            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-5">
+                <ngb-panel title="Screens">
+                    <ng-template ngbPanelContent>
+                        <ul class="p-0">
+                            <li class="">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="font-15">
+                                        <i class="fa fa-file-o me-2" aria-hidden="true"></i>
+                                        <Span>Home Page</Span>
+                                    </div>
+                                    <div class="font-13 text-muted">
+                                        <i class="fa fa-clone px-1" aria-hidden="true"></i>
+                                        <i class="fa fa-pencil-square-o px-1" aria-hidden="true"></i>
+                                        <i class="fa fa-trash px-1" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mt-3 text-muted">
+                                <div class="font-15">
+                                    <i class="fa fa-file-o me-2" aria-hidden="true"></i>
+                                    <Span>Devices</Span>
+                                </div>
+                            </li>
+                        </ul>
+                    </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                        <span>Properties </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        Properties List Comes Here
+                    </ng-template>
+                </ngb-panel>
+                <ngb-panel title="Style">
+                    <ng-template ngbPanelContent>
+                        Style List Comes Here
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Screen</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <form #screenForm="ngForm" (ngSubmit)="createScreen()">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Screen Name</label>
+                <input type="text" [ngClass]="{'is-invalid' : isClicked && screenName.invalid}" #screenName="ngModel"
+                    required class="form-control" ngModel name="screenname">
+                <div *ngIf="screenName.invalid && (screenName.dirty || screenName.touched) || isClicked">
+                    <div class="text-danger text-start" *ngIf="screenName.errors?.['required']">
+                        <i class="fa fa-exclamation-triangle me-1 mt-2" aria-hidden="true"></i>
+                        Screen name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Screen Id</label>
+                <input type="text" [ngClass]="{'is-invalid' : isClicked && screenId.invalid}" class="form-control"
+                    #screenId="ngModel" ngModel required="" required name="screenid">
+                <div *ngIf="screenId.invalid && (screenId.dirty || screenId.touched) || isClicked">
+                    <div class="text-danger text-start" *ngIf="screenId.errors?.['required']">
+                        <i class="fa fa-exclamation-triangle me-1 mt-2" aria-hidden="true"></i>
+                        Screen Id is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Description</label>
+                <input type="text" [ngClass]="{'is-invalid' : isClicked && description.invalid}" class="form-control"
+                    #description="ngModel" ngModel required="" required name="description">
+                <div *ngIf="description.invalid && (description.dirty || description.touched) || isClicked">
+                    <div class="text-danger text-start" *ngIf="description.errors?.['required']">
+                        <i class="fa fa-exclamation-triangle me-1 mt-2" aria-hidden="true"></i>
+                        Screen Id is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="d('Cross click')">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</ng-template>

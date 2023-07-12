@@ -1,0 +1,73 @@
+@import "../../../../../views/secured/editor/editor-theme.scss";
+:host {
+  width: 100%;
+  #library {
+    overflow: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      display: none; // Hide the scrollbar
+    }
+
+    #header {
+      background-color: $uni-accent-color;
+      border-bottom: 1px solid darkgrey;
+      color: #ffffff;
+      padding: 10px;
+      height: 5%;
+    }
+    #component_list {
+      width: auto;
+      height:40vh;
+      overflow: auto;
+      overflow-x:hidden;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-rows: 1fr;
+      grid-template-columns: auto auto;
+      padding: 10px;
+
+      &::-webkit-scrollbar {
+        display: none; // Hide the scrollbar
+      }
+
+      * {
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        cursor: move;
+
+        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        &:active {
+          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+          0 8px 10px 1px rgba(0, 0, 0, 0.14),
+          0 3px 14px 2px rgba(0, 0, 0, 0.12);
+        }
+      }
+    }
+  }
+}
+
+
+.search-field {
+  border-radius: 20px;
+  padding: 5px 15px;
+  border: 1px solid #8496AE;
+  height: 32px;
+}
+.search-icon {
+  position: absolute;
+  right: -9px;
+  top: -1.5px;
+  border: 1px solid #8496AE;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+  background-color: #fff;
+}

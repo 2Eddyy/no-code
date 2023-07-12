@@ -1,0 +1,86 @@
+<div class="container">
+  
+    <div class="row mt-5">
+        <!-- <div class="text-end">
+            <button routerLink="/projects" class=" btn btn-password">Project</button>
+        </div> -->
+        
+        <nav>
+            <div style="border-bottom: none;" class="nav nav-tabs " id="nav-tab" role="tablist ">
+                <button [ngClass]="{'active-style':changePasswordTab==true}" (click)="passwordTab()"
+                    class="nav-link Tabs-default " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">Change Password</button>
+                <button [ngClass]="{'active-style':Preferences==true}" (click)="PreferencesTab()"
+                    class="nav-link Tabs-default" id="nav-profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                    aria-selected="false">Preferences</button>
+                  
+            </div>
+        </nav>
+        <div style="border: 1px solid #673ab7;height: 350px;margin-left:12px;border-radius:8px;border-top-left-radius: 0px;"
+            class="tab-content" id="nav-tabContent">
+            <div *ngIf="changePasswordTab==true" class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                aria-labelledby="nav-home-tab" tabindex="0">
+                <div class="row">
+                    <div class="col-lg-5 m-3 changePassword">
+                        <form [formGroup]="changePasswordForm" (ngSubmit)="submit()" action="">
+                            <div class="p-2">
+                                <label class="text-muted mb-2" for="">New Password</label>
+                                <input (input)="submitted=false"
+                                    [ngClass]="{'error-mgs':submitted && changePasswordForm.controls.newPassword.errors?.['required']}"
+                                    formControlName="newPassword" class="form-control"
+                                    [type]="isPassword?'text':'password'" type="password" required>
+                                <div class="text-end">
+                                    <span type="" class="show-password" (click)="isPassword=!isPassword">
+                                        <i class="fa fa-eye  text-secondary" *ngIf="!isPassword"></i>
+                                        <i class="fa fa-eye-slash  text-secondary" *ngIf="isPassword"></i>
+                                    </span>
+                                </div>
+                                <span class="text-danger mt-1"
+                                    *ngIf="submitted && changePasswordForm.controls.newPassword.errors?.['required']">New
+                                    Password is required</span>
+                            </div>
+                            <div class="p-2">
+                                <label class="text-muted mb-2" for="">Confirm Password</label>
+                                <input
+                                    [ngClass]="{'error-mgs':submitted && changePasswordForm.controls.confirmPassword.errors?.['required']}"
+                                    (input)="submitted=false" formControlName="confirmPassword" class="form-control"
+                                    [type]="isPasswordTwo?'text':'password'" type="password" required>
+                                <div class="text-end">
+                                    <span type="" style="background: transparent;border:0;" class="show-passwordTwo"
+                                        (click)="isPasswordTwo=!isPasswordTwo">
+                                        <i class="fa fa-eye  text-secondary" *ngIf="!isPasswordTwo"></i>
+                                        <i class="fa fa-eye-slash  text-secondary" *ngIf="isPasswordTwo"></i>
+                                    </span>
+                                </div>
+                                <span class="text-danger mt-1"
+                                    *ngIf="submitted && changePasswordForm.controls.confirmPassword.errors?.['required']">Confirm
+                                    Password is required</span>
+                                <span class="text-danger mt-1"
+                                    *ngIf="submitted && changePasswordForm.status=='VALID' && newPassword!=confPassword">Confirm
+                                    Password doesn't match</span>
+
+
+                            </div>
+                            <div class="changePassword-btn text-center">
+                                <button class="btn btn-password">Change Password</button>
+                            </div>
+                           
+                        </form>
+
+                    </div>
+                    <div class="col">
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div *ngIf="Preferences==true" class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+                aria-labelledby="nav-profile-tab" tabindex="0"></div>
+
+        </div>
+
+    </div>
+
+</div>

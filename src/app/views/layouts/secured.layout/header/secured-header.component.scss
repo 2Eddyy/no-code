@@ -1,0 +1,136 @@
+ul li {
+    display: inline-block;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.sub-header{
+    border-bottom: 1px solid #ccd2de;
+}
+.publish-btn, .publish-btn:active{
+    background-color: #9c7fd0;
+    border: 1px solid #9c7fd0;
+    border-radius: 5px;
+    padding: 3px 15px
+}
+.right-section, .left-section{
+    padding: 5px;
+}
+.icon-style{
+    color: #767676;
+    padding: 0px 12px;
+    font-size: 16px;
+    border-left: 1px solid #d6d6d6;
+    cursor: pointer;
+}
+
+.bg-violet{
+    background-color: #673ab7;
+}
+
+.upgrade-btn, .upgrade-btn:active,.upgrade-btn:hover{
+    background-color: #673ab7;
+    border:none;
+    font-size: 14px;
+}
+
+.switch {
+    display: inline-block;
+    height: 20px;
+    position: relative;
+    width: 55px;
+  }
+  
+  .switch input {
+    display:none;
+  }
+  
+  .slider {
+    background-color: #fff;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    background: linear-gradient(90deg, rgba(225,190,6,1) 0%, rgba(235,178,16,1) 35%, rgba(252,158,33,1) 100%);
+    bottom: 4px;
+    content: "\f185";
+    height: 30px;
+    left: 0px;
+    position: absolute;
+    transition: .4s;
+    width: 30px;
+    top: -4px;
+    font-family: "Font Awesome 5 Free",sans-serif;
+    color: #fff;
+    padding: 3px 7px;
+  }
+  .checkboxTheme:checked .slider:before{
+    content: "\f186";
+  }
+  .checkboxTheme:checked .slider::after{
+    content: "\f185";
+  }
+  .slider::after{
+    content: "\f186";
+    position: absolute;
+    font-family: "Font Awesome 5 Free",sans-serif;
+    left: 7px;
+    top: 0px;
+    font-size: 13px;
+
+  }
+  input:checked + .slider {
+    background-color: #fff;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .navbar{
+    background-color: white;
+    height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  }
+#navbarText .active{
+  background-color: #ffffff17;
+  border-left: 1px solid #ffffff42;
+  border-right: 1px solid #ffffff42;
+}
+
+.username{
+  font-weight: 600;
+}
+.usermail{
+  font-weight: 800;
+  font-size: 12px;
+}
+
+::ng-deep .dropdown-toggle::after{
+  border-top:0.3em solid #fff;
+  border-right:0.3em solid #fff;
+}
+
+.navbar .dropdown-toggle::after{
+color: #673ab7;
+margin-top: 1rem;
+}
+
+// .dropdown-menu.show{
+//   width: 200px;
+// }
+.logout:active{
+  background-color:#673ab7;
+}

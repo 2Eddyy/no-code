@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#fff}.cls-3{fill:#b9bcc1}
+        </style>
+    </defs>
+    <g id="Group_696" data-name="Group 696" transform="translate(-46)">
+        <path id="Rectangle_938" d="M0 0h36v36H0z" class="cls-1" data-name="Rectangle 938" transform="translate(46)"/>
+        <g id="Group_694" data-name="Group 694">
+            <path id="Rectangle_939" d="M0 0h7v16H0z" class="cls-2" data-name="Rectangle 939" transform="translate(53 10)"/>
+            <path id="Path_784" d="M52 9v18h9V9zm8 17h-7V10h7z" class="cls-3" data-name="Path 784"/>
+        </g>
+        <path id="Path_785" d="M57.646 20.854L54.293 17.5l3.354-3.354.707.707-2.647 2.647 2.646 2.646z" data-name="Path 785"/>
+        <g id="Group_695" data-name="Group 695">
+            <path id="Path_786" d="M75 7.211A2.214 2.214 0 0 0 72.789 5h-9.578A2.214 2.214 0 0 0 61 7.211V9.1h14z" class="cls-1" data-name="Path 786"/>
+            <path id="Path_787" d="M75 10.1H61V17h4v1h-4v8.1h14z" class="cls-1" data-name="Path 787"/>
+            <path id="Path_788" d="M61 27.1v1.689A2.214 2.214 0 0 0 63.211 31h9.578A2.214 2.214 0 0 0 75 28.789V27.1z" class="cls-1" data-name="Path 788"/>
+            <path id="Path_789" d="M72.789 4h-9.578A3.214 3.214 0 0 0 60 7.211V17h-5v1h5v10.789A3.214 3.214 0 0 0 63.211 32h9.578A3.214 3.214 0 0 0 76 28.789V7.211A3.214 3.214 0 0 0 72.789 4zM61 7.211A2.214 2.214 0 0 1 63.211 5h9.578A2.214 2.214 0 0 1 75 7.211V9.1H61zM61 18h4v-1h-4v-6.9h14v16H61zm11.789 13h-9.578A2.214 2.214 0 0 1 61 28.789V27.1h14v1.689A2.214 2.214 0 0 1 72.789 31z" data-name="Path 789"/>
+        </g>
+    </g>
+</svg>

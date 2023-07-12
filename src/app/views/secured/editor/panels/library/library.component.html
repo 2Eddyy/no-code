@@ -1,0 +1,72 @@
+<!-- <div id="library">
+  <div id="header">
+    <span>Library</span>
+  </div>
+  <div id="component_list" >
+    <app-grid-square *ngFor="let component of componentList; let idx = index;"
+                     (mousedown)="dragStartHandler({id: component.id, icon: component.icon})"
+                     (mouseup)="dragStopHandler({id: component.id, icon: component.icon})"
+                     [id]="component.id"
+                     [data]="component"
+                     ></app-grid-square>
+  </div>
+</div> -->
+
+<div class="left-section" id="library">
+  <div class="search-section m-3 me-4 position-relative">
+    <input
+      type="text"
+      class="form-control search-field"
+      [(ngModel)]="elesearch"
+      placeholder="Search here..."
+    />
+    <div class="search-icon">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="overflow-style">
+    <ngb-accordion #acc="ngbAccordion" activeIds="basicElement">
+      <ngb-panel title="Template">
+        <ng-template ngbPanelContent></ng-template>
+      </ngb-panel>
+      <ngb-panel>
+        <ng-template ngbPanelTitle>
+          <span>Layouts <small class="ms-2">(Column)</small></span>
+        </ng-template>
+        <ng-template ngbPanelContent></ng-template>
+      </ngb-panel>
+      <ngb-panel title="Basic Elements" id="basicElement">
+        <ng-template ngbPanelTitle>
+          <span></span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="layout-section mt-1 p-1" id="component_list">
+            <app-grid-square
+              *ngFor="
+                let component of componentList | elementsearch : elesearch;
+                let idx = index
+              "
+              (mousedown)="
+                dragStartHandler({ id: component.id, icon: component.icon })
+              "
+              (mouseup)="
+                dragStopHandler({ id: component.id, icon: component.icon })
+              "
+              [id]="component.id"
+              [data]="component"
+            ></app-grid-square>
+          </div>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Widgets">
+        <ng-template ngbPanelContent> Widgets </ng-template>
+      </ngb-panel>
+      <ngb-panel title="E-charts">
+        <ng-template ngbPanelContent> E-charts comes here </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+  <!-- <div class="left-arrow-collapse">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+  </div> -->
+</div>

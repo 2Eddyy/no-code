@@ -1,0 +1,426 @@
+<div style="height: calc(100vh - 50px); overflow-y: auto; overflow-x: hidden">
+  <!-- <div class="col-12 col-md-6 container py-2 bg-color" id="id2">
+    <img
+      src="../../../../../assets/images/boodskap-logo-white.png"
+      alt="boodskap-logo-white"
+      style="height: 25px"
+    />
+  </div> -->
+
+  <div id="stepperId">
+    <div class="container-fluid p-3 pb-0">
+      <!-- <div class="px-3 c-pointer" (click)="goBackproject()">
+        <i class="fa fa-angle-left" aria-hidden="true"></i
+        ><span class="ps-2">Back</span>
+      </div> -->
+      <h4 class="px-3 com-unterline-color fw-normal">Create a project</h4>
+      <span
+        (click)="goBackproject(); stepper.reset()"
+        ngbTooltip="Close"
+        placement="bottom"
+        [autoClose]="true"
+        class="close"
+        >x</span
+      >
+    </div>
+    <div class="col-md-12">
+      <mat-vertical-stepper class="px-2" linear #stepper>
+        <mat-step label="Basic Information" [stepControl]="formValues">
+          <form
+            action=""
+            id="projectCreateForm"
+            [formGroup]="formValues"
+            (submit)="CreateProject()"
+          >
+            <div class="mb-4 w-75">
+              <label class="prj-crt-label"
+                >Project Name <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter the project name"
+                minlength="5"
+                maxlength="30"
+                id="pname"
+                (blur)="noduplicate()"
+                input="return /^[a-zA-Z0-9_ ]*$/i.test(event.key)"
+                [ngClass]="{
+                  'is-invalid': submitted && f['project_name'].errors
+                }"
+                formControlName="project_name"
+                required
+              />
+              <div
+                *ngIf="
+                  submitted &&
+                  f['project_name'].invalid &&
+                  (f['project_name'].dirty ||
+                    f['project_name'].touched ||
+                    f['project_name'].errors)
+                "
+              >
+                <div
+                  class="text-danger text-start"
+                  *ngIf="f['project_name'].errors?.['required']"
+                >
+                  <i
+                    class="fa fa-exclamation-triangle me-1 mt-2"
+                    aria-hidden="true"
+                  ></i>
+                  Project name is required.
+                </div>
+                <div
+                  class="text-danger text-start"
+                  *ngIf="f['project_name'].errors?.['incorrect']"
+                >
+                  <i
+                    class="fa fa-exclamation-triangle me-1 mt-2"
+                    aria-hidden="true"
+                  ></i>
+                  Project name already taken.
+                </div>
+                <div
+                  class="text-danger text-start"
+                  *ngIf="f['project_name'].errors?.['minlength']"
+                >
+                  <i
+                    class="fa fa-exclamation-triangle me-1 mt-2"
+                    aria-hidden="true"
+                  ></i>
+                  Must be minimum 5 characters.
+                </div>
+              </div>
+            </div>
+            <div class="mb-4 w-75">
+              <label class="prj-crt-label"
+                >App Id <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                formControlName="app_id"
+                maxlength="50"
+                (blur)="appidduplicate()"
+                pattern="^\w+(\.\w+){2}$"
+                [ngClass]="{ 'is-invalid': submitted && f['app_id'].errors }"
+                placeholder="Enter your app id"
+                required
+              />
+              <sm style="font-size: 14px; color: grey"
+                >Ex:Create.project.com</sm
+              >
+              <div
+                *ngIf="
+                  submitted &&
+                  f['app_id'].invalid &&
+                  (f['app_id'].dirty ||
+                    f['app_id'].touched ||
+                    f['app_id'].errors)
+                "
+              >
+                <!--   -->
+                <div
+                  class="text-danger text-start"
+                  *ngIf="f['app_id'].errors?.['required']"
+                >
+                  <i
+                    class="fa fa-exclamation-triangle me-1 mt-2"
+                    aria-hidden="true"
+                  ></i>
+                  Project/App Id is required.
+                </div>
+                <div
+                  class="text-danger text-start"
+                  *ngIf="f['app_id'].errors?.['incorrect']&&submitted==true"
+                >
+                  <i
+                    class="fa fa-exclamation-triangle me-1 mt-2"
+                    aria-hidden="true"
+                  ></i>
+                  App Id already taken
+                </div>
+                <div
+                  class="text-danger text-start"
+                  *ngIf="f['app_id'].errors?.['pattern']"
+                >
+                  <i
+                    class="fa fa-exclamation-triangle me-1 mt-2"
+                    aria-hidden="true"
+                  ></i>
+                  Enter a Valid App/Id
+                </div>
+              </div>
+            </div>
+            <div class="mb-4 w-75">
+              <label class="prj-crt-label"
+                >Tags <span class="text-danger">*</span></label
+              >
+              <ng-select
+                [items]="tagsList"
+                [ngClass]="{
+                  'is-invalid': submitted && f['project_tag'].errors
+                }"
+                [multiple]="true"
+                placeholder="Choose the tags"
+                required
+                bindLabel="name"
+                bindValue="name"
+                formControlName="project_tag"
+                [(ngModel)]="selectedTag"
+              >
+              </ng-select>
+              <div
+                *ngIf="
+                  submitted &&
+                  f['project_tag'].invalid &&
+                  (f['project_tag'].dirty ||
+                    f['project_tag'].touched ||
+                    f['project_tag'].errors)
+                "
+              >
+                <!--   -->
+                <div
+                  class="text-danger text-start"
+                  *ngIf="f['project_tag'].errors?.['required']"
+                >
+                  <i
+                    class="fa fa-exclamation-triangle me-1 mt-2"
+                    aria-hidden="true"
+                  ></i>
+                  Tags is required.
+                </div>
+              </div>
+            </div>
+            <div class="mb-4 w-75">
+              <label class="prj-crt-label"
+                >Categories <span class="text-danger">*</span></label
+              >
+              <ng-select
+                [items]="categoryList"
+                [ngClass]="{
+                  'is-invalid': submitted && f['project_category'].errors
+                }"
+                placeholder="Choose the categories"
+                bindLabel="name"
+                bindValue="name"
+                formControlName="project_category"
+                [(ngModel)]="selectedCategory"
+              >
+              </ng-select>
+              <div
+                *ngIf="
+                  submitted &&
+                  f['project_category'].invalid &&
+                  (f['project_category'].dirty ||
+                    f['project_category'].touched ||
+                    f['project_category'].errors)
+                "
+              >
+                <!--   -->
+                <div
+                  class="text-danger text-start"
+                  *ngIf="f['project_category'].errors?.['required']"
+                >
+                  <i
+                    class="fa fa-exclamation-triangle me-1 mt-2"
+                    aria-hidden="true"
+                  ></i>
+                  Categories is required.
+                </div>
+              </div>
+            </div>
+            <div class="mb-4 w-75 position-relative">
+              <form enctype="multipart/form-data" [formGroup]="formImage">
+                <div class="image-upload">
+                  <label class="prj-crt-label">Icon (Optional)</label>
+                  <input
+                    type="file"
+                    name="file"
+                    id="iconUpload"
+                    #files
+                    class="d-none"
+                    (change)="onFileSelected($event)"
+                    formControlName="imageUploaded"
+                  />
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <span
+                      class="upload-img-style c-pointer rounded text-wrap font-14"
+                      (click)="trigUploadClick()"
+                      id="picon"
+                      >Upload your custom icon</span
+                    >
+                    <i
+                      class="fa fa-file-image-o position-absolute"
+                      style="top: 37px; right: 7px"
+                      aria-hidden="true"
+                    ></i>
+                    <div class="icon-preview">
+                      <img
+                        src="../../../../../assets/images/bolt.svg"
+                        class="icon-preview-style"
+                        *ngIf="
+                          !uploadedFile &&
+                          imageload == false &&
+                          !uploadFileStatus
+                        "
+                        alt="project"
+                        height="50"
+                      />
+                      <img
+                        src="../../../../../assets/images/loading.gif"
+                        class="icon-preview-style"
+                        *ngIf="imageload == true"
+                        alt="project"
+                        height="50"
+                      />
+                      <img
+                        src="../../../../../assets/images/close.png"
+                        class="icon-preview-style"
+                        *ngIf="uploadFileStatus"
+                        alt="project"
+                        height="50"
+                      />
+
+                      <img
+                        src="https://v5dev.boodskap.io/api/files/download//{{
+                          api_token
+                        }}/{{ uploadedFile }}"
+                        *ngIf="uploadedFile && imageload == false"
+                        alt="project"
+                        height="50"
+                      />
+                    </div>
+                  </div>
+                  <span *ngIf="uploadedFile" style="font-size: 14px">{{
+                    image(imageUploadText)
+                  }}</span>
+                </div>
+              </form>
+              <div *ngIf="uploadFileStatus" class="text-danger text-start">
+                <i
+                  class="fa fa-exclamation-triangle me-1 mt-2"
+                  aria-hidden="true"
+                ></i>
+                Please upload valid file format
+              </div>
+              <div *ngIf="filesize" class="text-danger text-start">
+                <i
+                  class="fa fa-exclamation-triangle me-1 mt-2"
+                  aria-hidden="true"
+                ></i>
+                File size must be less than 1MB
+              </div>
+            </div>
+
+            <div class="mb-4 w-75">
+              <label class="prj-crt-label">Description</label>
+              <textarea
+                type="text"
+                class="form-control"
+                formControlName="project_desc"
+                maxlength="500"
+                placeholder="Enter your project description"
+                aria-describedby="projectName"
+              ></textarea>
+            </div>
+
+            <div class="mt-5">
+              <button
+                type="button"
+                class="btn btn-sm px-4 py-2 border rounded stepper-button"
+                id="prjContinue"
+                matStepperNext
+                (click)="submitted = true"
+              >
+                Continue
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step label="Confirmation" completed="{{ step2 }}">
+          <div class="row mt-2">
+            <div class="col-md-10">
+              <div
+                class="p-2"
+                style="
+                  background-color: #f7f6fa;
+                  border-radius: 10px;
+                  min-height: 220px;
+                "
+              >
+                <div class="p-2 project-card border-0">
+                  <div class="card-body">
+                    <div class="icon-preview">
+                      <img
+                        src="../../../../assets/images/globe.png"
+                        alt="project"
+                        *ngIf="!uploadedFile"
+                        style="border-radius: 50%; width: 50px; height: 50px"
+                      />
+                      <img
+                        src="https://v5dev.boodskap.io/api/files/download//{{
+                          api_token
+                        }}/{{ uploadedFile }}"
+                        *ngIf="uploadedFile"
+                        alt="project"
+                        style="border-radius: 50%; width: 50px; height: 50px"
+                      />
+                    </div>
+
+                    <h6 class="my-1 project-name">
+                      {{ formValues.value.project_name }}
+                    </h6>
+                    <p class="my-1 time">
+                      {{ formValues.value.app_id }}
+                    </p>
+                    <p class="my-1 time">
+                      {{ formValues.value.project_tag }}
+                    </p>
+                    <p class="my-1 time">
+                      <span *ngIf="!formValues.value.project_desc">-</span>
+                      <span
+                        style="
+                          width: 100%;
+                          overflow: hidden;
+                          display: -webkit-box;
+                          -webkit-line-clamp: 2;
+                          -webkit-box-orient: vertical;
+                        "
+                      >
+                        {{ formValues.value.project_desc }}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5">
+            <div>
+              <button
+                type="submit"
+                [disabled]="finish"
+                (click)="gotodashboard()"
+                class="btn btn-primary px-4 py-2 border rounded stepper-button"
+                matStepperNext
+              >
+                Finish
+              </button>
+              <button
+                type="submit"
+                (click)="goBackproject()"
+                class="btn-sm mx-2 px-4 py-2 border rounded btn btn-dange"
+                matStepperPrevious
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </div>
+</div>
